@@ -6,4 +6,4 @@
 
 # Ignored file types
 *.iml
-
+*.pyc

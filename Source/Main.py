@@ -1,4 +1,5 @@
 import pygame, sys
+from Expressions import *
 from pygame.locals import *
 
 def exit_game(code):
@@ -31,8 +32,13 @@ if (failed > 0):
     exit_game(-1)
 
 # Create the pygame window
-window = create_window((1280, 768), 0, 32, "PyGame Test")
+window_size = (1280, 768)
+window = create_window(window_size, 0, 32, "PyGame Test")
 clear_color = (100, 149, 247)
+
+for x in range(1, 30):
+    frac = frac_random()
+    print("{0} ({1}) == {2}".format(frac, frac.can_be_reduced(), frac.get_equal_fraction()))
 
 # Run the game loop
 is_running = True
