@@ -1,5 +1,6 @@
 import pygame, sys
 from Expressions import *
+from Input import xo_input
 from pygame.locals import *
 
 def exit_game(code):
@@ -38,7 +39,7 @@ clear_color = (100, 149, 247)
 
 for x in range(1, 30):
     frac = frac_random()
-    print("{0} ({1}) == {2}".format(frac, frac.can_be_reduced(), frac.get_equal_fraction()))
+    print("{0} == {1}".format(frac, frac.get_equal_fraction()))
 
 # Run the game loop
 is_running = True
@@ -50,7 +51,16 @@ while (is_running):
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 is_running = False
+    xo_input.update()
     window.fill(clear_color)
+    if (xo_input.btn_check):    print("CHECK pressed")
+    if (xo_input.btn_cross):    print("CROSS pressed")
+    if (xo_input.btn_circle):   print("CIRCLE pressed")
+    if (xo_input.btn_square):   print("SQUARE pressed")
+    if (xo_input.dpad_down):    print("DOWN pressed")
+    if (xo_input.dpad_left):    print("LEFT pressed")
+    if (xo_input.dpad_right):   print("RIGHT pressed")
+    if (xo_input.dpad_up):      print("UP pressed")
     ### TODO - Update game logic
     ### TODO - Draw game
     pygame.display.update()
