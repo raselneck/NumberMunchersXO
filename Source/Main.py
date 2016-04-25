@@ -1,7 +1,11 @@
 import pygame, sys
 from Expressions import *
+from gamestatemanager import *
 from Input import xo_input
 from pygame.locals import *
+
+from Gamestates.mainscreen import MainScreen
+from Gamestates.gamescreen import GameScreen
 
 def exit_game(code):
     """
@@ -41,6 +45,16 @@ for x in range(1, 30):
     frac = frac_random()
     print("{0} == {1}".format(frac, frac.get_equal_fraction()))
 
+# Add GameStates here
+# Format for game states is any class with a
+# Start, Update, Draw, and Final function
+# These are automatically called
+stateManager = GameStateManager()
+stateManager.addGameState("MainScreen", MainScreen(stateManager))
+stateManager.addGameState("GameScreen", GameScreen(stateManager))
+
+print stateManager
+
 # Run the game loop
 is_running = True
 while (is_running):
@@ -51,18 +65,28 @@ while (is_running):
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 is_running = False
-    xo_input.update()
-    window.fill(clear_color)
-    if (xo_input.btn_check):    print("CHECK pressed")
-    if (xo_input.btn_cross):    print("CROSS pressed")
-    if (xo_input.btn_circle):   print("CIRCLE pressed")
-    if (xo_input.btn_square):   print("SQUARE pressed")
-    if (xo_input.dpad_down):    print("DOWN pressed")
-    if (xo_input.dpad_left):    print("LEFT pressed")
-    if (xo_input.dpad_right):   print("RIGHT pressed")
-    if (xo_input.dpad_up):      print("UP pressed")
-    ### TODO - Update game logic
-    ### TODO - Draw game
+	
+	# Check if we changed states
+	# Trigger start function
+	if stateManager.switchTriggered is True:
+		stateManager.switchTriggered = False;
+		stateManager.currentGameState = stateManager.stateToSwitchTo
+		stateManager.currentGameState.start()
+		stateManager.stateToSwitchTo = None
+		
+    # Game logic
+	xo_input.update()
+	stateManager.getCurrentGameState().update()
+	
+    # Draw game
+	window.fill(clear_color)
+	stateManager.getCurrentGameState().draw()
+	
+	# Check if state was changed
+	# Trigger final function
+	if stateManager.switchTriggered is True:
+		stateManager.currentGameState.final()
+	
     pygame.display.update()
 
 exit_game(1)
