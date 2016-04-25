@@ -40,7 +40,7 @@ if (failed > 0):
 window_size = (1280, 768)
 window = create_window(window_size, 0, 32, "PyGame Test")
 clear_color = (100, 149, 247)
-
+    
 for x in range(1, 30):
     frac = frac_random()
     print("{0} == {1}".format(frac, frac.get_equal_fraction()))
@@ -50,10 +50,11 @@ for x in range(1, 30):
 # Start, Update, Draw, and Final function
 # These are automatically called
 stateManager = GameStateManager()
-stateManager.addGameState("MainScreen", MainScreen(stateManager))
-stateManager.addGameState("GameScreen", GameScreen(stateManager))
+stateManager.addGameState("MainScreen", MainScreen(stateManager, window))
+stateManager.addGameState("GameScreen", GameScreen(stateManager, window))
 
-print stateManager
+# Prevent extra states being added after game starts
+stateManager.gameRunning = True;
 
 # Run the game loop
 is_running = True
@@ -65,28 +66,29 @@ while (is_running):
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 is_running = False
-	
-	# Check if we changed states
-	# Trigger start function
-	if stateManager.switchTriggered is True:
-		stateManager.switchTriggered = False;
-		stateManager.currentGameState = stateManager.stateToSwitchTo
-		stateManager.currentGameState.start()
-		stateManager.stateToSwitchTo = None
-		
+                
+    
+    # Check if we changed states
+    # Trigger start function
+    if stateManager.switchTriggered is True:
+        stateManager.switchTriggered = False;
+        stateManager.currentGameState = stateManager.stateToSwitchTo
+        stateManager.currentGameState.start()
+        stateManager.stateToSwitchTo = None
+        
     # Game logic
-	xo_input.update()
-	stateManager.getCurrentGameState().update()
-	
+    xo_input.update()
+    stateManager.getCurrentGameState().update()
+    
     # Draw game
-	window.fill(clear_color)
-	stateManager.getCurrentGameState().draw()
-	
-	# Check if state was changed
-	# Trigger final function
-	if stateManager.switchTriggered is True:
-		stateManager.currentGameState.final()
-	
+    window.fill(clear_color)
+    stateManager.getCurrentGameState().draw()
+    
+    # Check if state was changed
+    # Trigger final function
+    if stateManager.switchTriggered is True:
+        stateManager.currentGameState.final()
+    
     pygame.display.update()
 
 exit_game(1)

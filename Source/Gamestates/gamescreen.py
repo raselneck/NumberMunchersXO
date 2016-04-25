@@ -1,20 +1,21 @@
 import pygame, sys
+from Input import xo_input
 
 class GameScreen:
 
-	def __init__(self, manager):
-		self.stateManager = manager
-		pass
+    def __init__(self, manager, screen):
+        self.stateManager = manager
+        self.window = screen
+        pass
 
-	def start(self):
-		print "Start GameScreen"
-		
-	def update(self):
-		self.stateManager.switchGameState("MainScreen")
-		print "update"
-	
-	def draw(self):
-		print "draw"
-	
-	def final(self):
-		print "final"
+    def start(self):
+        print "Start GameScreen"
+        
+    def update(self):
+        if (xo_input.btn_check): self.stateManager.switchGameState("MainScreen")
+    
+    def draw(self):
+        pygame.draw.rect(self.window, (255, 0, 0), (50, 50, 50, 50), 0)
+    
+    def final(self):
+        print "final"
