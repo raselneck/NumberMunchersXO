@@ -1,5 +1,5 @@
 import pygame, sys
-from Input import xo_input
+from input import xo_input
 
 class GameScreen:
 

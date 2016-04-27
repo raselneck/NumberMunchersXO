@@ -1,7 +1,7 @@
 import pygame, sys
-from Expressions import *
+from expressions import *
 from gamestatemanager import *
-from Input import xo_input
+from input import xo_input
 from pygame.locals import *
 
 from Gamestates.mainscreen import MainScreen
