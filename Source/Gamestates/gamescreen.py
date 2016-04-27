@@ -9,7 +9,7 @@ class GameScreen:
         pass
 
     def start(self):
-        print "Start GameScreen"
+        pass
         
     def update(self):
         if (xo_input.btn_check):
@@ -19,4 +19,4 @@ class GameScreen:
         pygame.draw.rect(self.window, (255, 255, 255), (50, 50, 50, 50), 0)
     
     def final(self):
-        print "final"
+        pass

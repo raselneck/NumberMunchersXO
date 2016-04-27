@@ -3,8 +3,8 @@ from fraction import Fraction
 from gamestatemanager import *
 from input import xo_input
 from pygame.locals import *
-from GameStates.mainscreen import MainScreen
-from GameStates.gamescreen import GameScreen
+from Gamestates.mainscreen import MainScreen
+from Gamestates.gamescreen import GameScreen
 
 def exit_game(code):
     """

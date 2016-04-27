@@ -2,6 +2,7 @@ import pygame
 from input import xo_input
 from UI.uicontainer import UIContainer
 
+
 class MainScreen:
     """
     Defines the main menu screen
@@ -14,14 +15,17 @@ class MainScreen:
     def __init__(self, manager, screen):
         self.stateManager = manager
         self.window = screen
+
         self.uiContainer = UIContainer(self.window)
         button = self.uiContainer.add_button()
-        button.rect = pygame.Rect(50, 50, 50, 50)
+        button.rect = pygame.Rect(640, 300, 100, 20)
+        button.text = "Start Game"
         self.testButton = button
+        pass
 
     def start(self):
-        print "Start MainScreen"
-        
+        pass
+   
     def update(self):
         if xo_input.btn_check or self.testButton.was_pressed():
             self.stateManager.switchGameState("GameScreen")
@@ -32,4 +36,4 @@ class MainScreen:
         self.uiContainer.draw()
     
     def final(self):
-        print "final"
+        pass

@@ -20,6 +20,9 @@ class Button(UIComponent):
         UIComponent.__init__(self, container)
         self.selectable = True
 
+        self.font = pygame.font.SysFont("monospace", 15)
+        self.text = "Default String"
+
     def was_pressed(self):
         """
         Checks to see if this button was pressed.
@@ -69,4 +72,8 @@ class Button(UIComponent):
         elif self.__isHovering:
             pygame.draw.rect(self.container.get_window(), (0, 0, 255), self.rect, 0)
         else:
-            pygame.draw.rect(self.container.get_window(), (0, 255, 0), self.rect, 0)
+            pygame.draw.rect(self.container.get_window(), (0, 255, 0), self.rect, 0)\
+        
+        label = self.font.render(self.text, 1, (255, 255, 255))
+        text_width, text_height = self.font.size(self.text)
+        self.container.get_window().blit(label, (self.rect.centerx - (text_width/2), self.rect.centery - (text_height/2)))
