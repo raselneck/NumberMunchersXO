@@ -1,5 +1,5 @@
 import pygame, sys
-from expressions import *
+from fraction import Fraction
 from gamestatemanager import *
 from input import xo_input
 from pygame.locals import *
@@ -29,6 +29,14 @@ def create_window(resolution = (100, 100), flags = 0, depth = 32, title = "Hello
     pygame.display.set_caption(title)
     return window
 
+
+# Test two fractions
+fracA = Fraction(3, 9)
+fracB = Fraction(1, 3)
+assert fracA == fracB
+
+
+
 # Initialize pygame
 passed, failed = pygame.init()
 if (failed > 0):
@@ -49,7 +57,7 @@ stateManager.addGameState("MainScreen", MainScreen(stateManager, window))
 stateManager.addGameState("GameScreen", GameScreen(stateManager, window))
 
 # Prevent extra states being added after game starts
-stateManager.gameRunning = True;
+stateManager.gameRunning = True
 
 # Run the game loop
 is_running = True
@@ -66,7 +74,7 @@ while (is_running):
     # Check if we changed states
     # Trigger start function
     if stateManager.switchTriggered is True:
-        stateManager.switchTriggered = False;
+        stateManager.switchTriggered = False
         stateManager.currentGameState = stateManager.stateToSwitchTo
         stateManager.currentGameState.start()
         stateManager.stateToSwitchTo = None

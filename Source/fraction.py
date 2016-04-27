@@ -52,6 +52,15 @@ class Fraction:
         """
         return get_gcd(self.numerator, self.denominator) > 1
 
+    def get_reduced(self):
+        """
+        Gets the reduced form of this fraction.
+
+        :return: The reduced form of this fraction.
+        """
+        mod = 1 / get_gcd(self.numerator, self.denominator)
+        return Fraction(self.numerator * mod, self.denominator * mod)
+
     def get_common_factors(self):
         """
         Gets all of the common factors of the numerator and the denominator.
@@ -87,6 +96,23 @@ class Fraction:
         if (self.denominator == 1):
             return str(self.numerator)
         return "{0}/{1}".format(self.numerator, self.denominator)
+
+    def __eq__(self, other):
+        """
+        Checks to see if this fraction is equal to another.
+
+        :param other: The other fraction.
+        :return: True if the two fractions are equal, false if not.
+        """
+        if not isinstance(other, Fraction):
+            return False
+
+        fracA = self.get_reduced()
+        fracB = other.get_reduced()
+
+        bNumEqual = (fracA.numerator == fracB.numerator)
+        bDenomEqual = (fracA.denominator == fracA.denominator)
+        return bNumEqual and bDenomEqual
 
 def frac_random_numerator():
     """
