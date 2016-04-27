@@ -9,6 +9,7 @@ class MainScreen:
     stateManager = None
     window = None
     uiContainer = None
+    testButton = None
 
     def __init__(self, manager, screen):
         self.stateManager = manager
@@ -16,17 +17,18 @@ class MainScreen:
         self.uiContainer = UIContainer(self.window)
         button = self.uiContainer.add_button()
         button.rect = pygame.Rect(50, 50, 50, 50)
+        self.testButton = button
 
     def start(self):
         print "Start MainScreen"
         
     def update(self):
-        if (xo_input.btn_check):
+        if xo_input.btn_check or self.testButton.was_pressed():
             self.stateManager.switchGameState("GameScreen")
         self.uiContainer.update()
     
     def draw(self):
-        pygame.draw.rect(self.window, (0, 255, 0), (50, 50, 50, 50), 0)
+        # UI needs to be drawn LAST
         self.uiContainer.draw()
     
     def final(self):

@@ -6,6 +6,7 @@ class Button(UIComponent):
     """
     Defines a UI button.
     """
+    __canBeDown = True
     __isHovering = False
     __isDown = False
     __wasPressed = False
@@ -31,16 +32,33 @@ class Button(UIComponent):
         """
         Updates this button.
         """
-        mx = xo_input.mouse_x
-        my = xo_input.mouse_y
+        mouseX = xo_input.mouse_x
+        mouseY = xo_input.mouse_y
+
+        # Ensure people can't drag over the button with the mouse button already down
+        if not self.__isHovering:
+            self.__canBeDown = True
+            if xo_input.mouse_left_down:
+                self.__canBeDown = False
+        else:
+            if not xo_input.mouse_left_down:
+                self.__canBeDown = True
 
         # Check if the mouse is hovering over us
-        bAlignedX = (mx >= self.rect.left) and (mx <= self.rect.right)
-        bAlignedY = (my >= self.rect.top) and (my <= self.rect.bottom)
+        bAlignedX = (mouseX >= self.rect.left) and (mouseX <= self.rect.right)
+        bAlignedY = (mouseY >= self.rect.top) and (mouseY <= self.rect.bottom)
         self.__isHovering = bAlignedX and bAlignedY
 
         # Check if the mouse is down on us
-        self.__isDown = self.__isHovering and xo_input.mouse_left_down
+        if self.__canBeDown:
+            # Check if we were pressed
+            if self.__isDown and xo_input.mouse_left_up:
+                self.__wasPressed = True
+            else:
+                self.__wasPressed = False
+
+            # Update actual down state
+            self.__isDown = self.__isHovering and xo_input.mouse_left_down
 
     def draw(self):
         """
