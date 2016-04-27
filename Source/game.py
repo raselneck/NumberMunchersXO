@@ -3,9 +3,8 @@ from expressions import *
 from gamestatemanager import *
 from input import xo_input
 from pygame.locals import *
-
-from Gamestates.mainscreen import MainScreen
-from Gamestates.gamescreen import GameScreen
+from GameStates.mainscreen import MainScreen
+from GameStates.gamescreen import GameScreen
 
 def exit_game(code):
     """
@@ -40,10 +39,6 @@ if (failed > 0):
 window_size = (1280, 768)
 window = create_window(window_size, 0, 32, "PyGame Test")
 clear_color = (100, 149, 247)
-    
-for x in range(1, 30):
-    frac = frac_random()
-    print("{0} == {1}".format(frac, frac.get_equal_fraction()))
 
 # Add GameStates here
 # Format for game states is any class with a

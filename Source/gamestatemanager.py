@@ -1,5 +1,5 @@
 import pygame, sys
-import Gamestates.mainscreen
+import GameStates.mainscreen
 
 class GameStateManager:
     
