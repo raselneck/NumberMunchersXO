@@ -3,8 +3,13 @@ from fraction import Fraction
 from gamestatemanager import *
 from input import xo_input
 from pygame.locals import *
+
 from Gamestates.mainscreen import MainScreen
 from Gamestates.gamescreen import GameScreen
+from Gamestates.instructionsscreen import InstructionsScreen
+from Gamestates.highscorescreen import HighScoreScreen
+from Gamestates.aboutscreen import AboutScreen
+
 
 def exit_game(code):
     """
@@ -46,7 +51,7 @@ if (failed > 0):
 # Create the pygame window
 window_size = (1280, 768)
 window = create_window(window_size, 0, 32, "PyGame Test")
-clear_color = (100, 149, 247)
+clear_color = (0, 0, 0)
 
 # Add GameStates here
 # Format for game states is any class with a
@@ -55,6 +60,9 @@ clear_color = (100, 149, 247)
 stateManager = GameStateManager()
 stateManager.addGameState("MainScreen", MainScreen(stateManager, window))
 stateManager.addGameState("GameScreen", GameScreen(stateManager, window))
+stateManager.addGameState("AboutScreen", AboutScreen(stateManager, window))
+stateManager.addGameState("InstructionsScreen", InstructionsScreen(stateManager, window))
+stateManager.addGameState("HighScoreScreen", HighScoreScreen(stateManager, window))
 
 # Prevent extra states being added after game starts
 stateManager.gameRunning = True
