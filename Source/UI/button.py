@@ -22,6 +22,19 @@ class Button(UIComponent):
 
         self.font = pygame.font.SysFont("monospace", 15)
         self.text = "Default String"
+        self.textColour = (255, 255, 255)
+        
+        self.baseColour = (255, 0, 0)
+        self.hoverColour = (0, 255, 0)
+        self.clickColour = (0, 0, 255)
+        
+        # 0 For filled block colour
+        # 1 For outline of colour
+        self.baseFill = 0
+        self.hoverFill = 0
+        self.clickFill = 0
+        
+        
 
     def was_pressed(self):
         """
@@ -68,12 +81,12 @@ class Button(UIComponent):
         Draws this button.
         """
         if self.__isDown:
-            pygame.draw.rect(self.container.get_window(), (255, 0, 0), self.rect, 0)
+            pygame.draw.rect(self.container.get_window(), self.clickColour, self.rect, self.clickFill)
         elif self.__isHovering:
-            pygame.draw.rect(self.container.get_window(), (0, 0, 255), self.rect, 0)
+            pygame.draw.rect(self.container.get_window(), self.hoverColour, self.rect, self.hoverFill)
         else:
-            pygame.draw.rect(self.container.get_window(), (0, 255, 0), self.rect, 0)\
+            pygame.draw.rect(self.container.get_window(), self.baseColour, self.rect, self.baseFill)
         
-        label = self.font.render(self.text, 1, (255, 255, 255))
+        label = self.font.render(self.text, 1, self.textColour)
         text_width, text_height = self.font.size(self.text)
         self.container.get_window().blit(label, (self.rect.centerx - (text_width/2), self.rect.centery - (text_height/2)))
