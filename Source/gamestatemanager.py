@@ -5,14 +5,14 @@ class GameStateManager:
     
     def __init__(self):
         self.gameStatesIndex = {}
-        self.totalGameStates = 0;
+        self.totalGameStates = 0
     
-        self.currentGameState = None;
+        self.currentGameState = None
         
-        self.switchTriggered = False;
-        self.stateToSwitchTo = None;
+        self.switchTriggered = False
+        self.stateToSwitchTo = None
         
-        self.gameRunning = False;
+        self.gameRunning = False
     
     # Returns the current state object
     def getCurrentGameState(self):
