@@ -43,12 +43,12 @@ def create_goal(start_fraction = frac_random()):
     """
     correct_fracs =[]
     wrong_fracs = []
-    rand = randint(5,25)
+    rand = randint(5,20)
 
     for x in range(rand):
         correct_fracs.append(start_fraction.get_equal_fraction())
 
-    for x in range(30-rand):
+    for x in range(25-rand):
         wrong_fracs.append(start_fraction.get_inequal_fraction())
 
     return (correct_fracs, wrong_fracs)
