@@ -1,5 +1,5 @@
 import pygame, sys
-from expressions import *
+from fraction import *
 from gamestatemanager import *
 from input import xo_input
 from pygame.locals import *
@@ -49,15 +49,26 @@ def create_goal(start_fraction = frac_random()):
 
     return (correct_fracs, wrong_fracs)
 
+# Test two fractions
+fracA = Fraction(3, 9)
+fracB = Fraction(1, 3)
+assert fracA == fracB
+
+
+
 # Initialize pygame
 passed, failed = pygame.init()
 if (failed > 0):
     print("One or more pygame submodules failed to initialize")
     exit_game(-1)
 
-# Create the pygame window
-window_size = (1280, 768)
-window = create_window(window_size, 0, 32, "PyGame Test")
+# Get desktop information
+screen_info = pygame.display.Info()
+
+# Make the game full screen
+window_flags = FULLSCREEN | DOUBLEBUF | NOFRAME
+window_size = (screen_info.current_w, screen_info.current_h)
+window = create_window(window_size, window_flags, 32, "PyGame Test")
 clear_color = (100, 149, 247)
 
 fractionAnswers = []
@@ -68,7 +79,13 @@ for x in range(1, 30):
     equalFractions.append(fractionAnswers[x-1].get_equal_fraction())
     print("{0} == {1}".format(fractionAnswers[x-1], equalFractions[x-1]))
 
-print("Find these multiples {0}".format(create_goal(frac_random())))
+right_fracs, wrong_fracs = create_goal(frac_random())
+for x in range(len(right_fracs)):
+    print("Find these multiples {0}".format(right_fracs[x-1]))
+
+for x in range(len(wrong_fracs)):
+    print("These multiples are wrong {0}".format(wrong_fracs[x - 1]))
+
 # Add GameStates here
 # Format for game states is any class with a
 # Start, Update, Draw, and Final function
@@ -78,7 +95,7 @@ stateManager.addGameState("MainScreen", MainScreen(stateManager, window))
 stateManager.addGameState("GameScreen", GameScreen(stateManager, window))
 
 # Prevent extra states being added after game starts
-stateManager.gameRunning = True;
+stateManager.gameRunning = True
 
 # Run the game loop
 is_running = True
@@ -95,7 +112,7 @@ while (is_running):
     # Check if we changed states
     # Trigger start function
     if stateManager.switchTriggered is True:
-        stateManager.switchTriggered = False;
+        stateManager.switchTriggered = False
         stateManager.currentGameState = stateManager.stateToSwitchTo
         stateManager.currentGameState.start()
         stateManager.stateToSwitchTo = None
