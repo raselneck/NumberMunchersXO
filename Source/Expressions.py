@@ -78,6 +78,18 @@ class Fraction:
                 multiple = 1 / factors[index]
         return Fraction(int(self.numerator * multiple), int(self.denominator * multiple))
 
+    def get_inequal_fraction(self):
+        """
+        Returns a fraction that isnt equal to frac
+
+        :return: a non equal fraction
+        """
+        inequal_frac = frac_random()
+        while inequal_frac == self:
+            inequal_frac = frac_random()
+
+        return inequal_frac
+
     def __str__(self):
         """
         Gets this fraction as a string.

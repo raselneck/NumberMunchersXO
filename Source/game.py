@@ -3,6 +3,7 @@ from expressions import *
 from gamestatemanager import *
 from input import xo_input
 from pygame.locals import *
+from random import *
 
 from Gamestates.mainscreen import MainScreen
 from Gamestates.gamescreen import GameScreen
@@ -30,6 +31,24 @@ def create_window(resolution = (100, 100), flags = 0, depth = 32, title = "Hello
     pygame.display.set_caption(title)
     return window
 
+def create_goal(start_fraction = frac_random()):
+    """
+    creates a list of correct fractions and incorrect fractions from the given fraction
+    :param start_fraction: the fraction that all of the correct fractions are based on
+    :return: a list of correct and incorrect fractions
+    """
+    correct_fracs =[]
+    wrong_fracs = []
+    rand = randint(5,25)
+
+    for x in range(rand):
+        correct_fracs.append(start_fraction.get_equal_fraction())
+
+    for x in range(30-rand):
+        wrong_fracs.append(start_fraction.get_inequal_fraction())
+
+    return (correct_fracs, wrong_fracs)
+
 # Initialize pygame
 passed, failed = pygame.init()
 if (failed > 0):
@@ -40,11 +59,16 @@ if (failed > 0):
 window_size = (1280, 768)
 window = create_window(window_size, 0, 32, "PyGame Test")
 clear_color = (100, 149, 247)
+
+fractionAnswers = []
+equalFractions = []
     
 for x in range(1, 30):
-    frac = frac_random()
-    print("{0} == {1}".format(frac, frac.get_equal_fraction()))
+    fractionAnswers.append(frac_random())
+    equalFractions.append(fractionAnswers[x-1].get_equal_fraction())
+    print("{0} == {1}".format(fractionAnswers[x-1], equalFractions[x-1]))
 
+print("Find these multiples {0}".format(create_goal(frac_random())))
 # Add GameStates here
 # Format for game states is any class with a
 # Start, Update, Draw, and Final function
