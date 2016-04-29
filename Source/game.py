@@ -48,10 +48,15 @@ if (failed > 0):
     print("One or more pygame submodules failed to initialize")
     exit_game(-1)
 
-# Create the pygame window
-window_size = (1280, 768)
-window = create_window(window_size, 0, 32, "PyGame Test")
+# Get desktop information
+screen_info = pygame.display.Info()
+
+# Make the game full screen
+window_flags = FULLSCREEN | DOUBLEBUF | NOFRAME
+window_size = (screen_info.current_w, screen_info.current_h)
+window = create_window(window_size, window_flags, 32, "PyGame Test")
 clear_color = (0, 0, 0)
+
 
 # Add GameStates here
 # Format for game states is any class with a
