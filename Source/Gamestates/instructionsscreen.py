@@ -12,7 +12,8 @@ class InstructionsScreen:
         pass
         
     def update(self):
-        pass
+        if (xo_input.btn_check):
+            self.stateManager.switchGameState("MainScreen")
     
     def draw(self):
         pass

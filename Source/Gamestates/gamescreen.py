@@ -3,13 +3,6 @@ from input import xo_input
 from UI.uicontainer import UIContainer
 
 class GameScreen:
-    stateManager = None
-    screenInfo = None
-    window = None
-    uiContainer = None
-
-    buttons = []
-
     def __init__(self, manager, screen):
         self.stateManager = manager
         self.window = screen
@@ -18,6 +11,7 @@ class GameScreen:
 
         self.screenInfo = pygame.display.Info()
 
+    def start(self):
         # Button sizes
         padding = 10
         width = (self.screenInfo.current_w-(padding*7))/5
@@ -27,15 +21,12 @@ class GameScreen:
             for j in range(0,5):
                 button = self.uiContainer.add_button()
                 button.rect = pygame.Rect((padding * (i + 1)) + (width * i), (padding * (j + 1)) + (height * j), width, height)
-                self.buttons.append(button)
-        pass
-
-    def start(self):
-        pass
         
     def update(self):
         if (xo_input.btn_check):
             self.stateManager.switchGameState("MainScreen")
+        
+        self.uiContainer.update()
     
     def draw(self):
         pygame.draw.rect(self.window, (255, 255, 255), (50, 50, 50, 50), 0)

@@ -7,16 +7,6 @@ class MainScreen:
     """
     Defines the main menu screen
     """
-    stateManager = None
-    screenInfo = None
-    window = None
-    uiContainer = None
-    
-    gameButton = None
-    instructionsButton = None
-    highScoresButton = None
-    aboutButton = None
-
     def __init__(self, manager, screen):
         self.stateManager = manager
         self.window = screen
@@ -25,6 +15,12 @@ class MainScreen:
         
         self.screenInfo = pygame.display.Info()
         
+        self.gameButton = None
+        self.instructionsButton = None
+        self.highScoresButton = None
+        self.aboutButton = None
+
+    def start(self):
         # Button sizes
         width = 150
         height = 20
@@ -55,20 +51,17 @@ class MainScreen:
         self.gameButton.clickColour = self.instructionsButton.clickColour = self.highScoresButton.clickColour = self.aboutButton.clickColour = (128, 128, 128)
         
         self.gameButton.hoverFill = self.instructionsButton.hoverFill = self.highScoresButton.hoverFill = self.aboutButton.hoverFill = 1
-        pass
-
-    def start(self):
-        pass
    
     def update(self):
-        if xo_input.btn_check or self.gameButton.was_pressed():
+        if self.gameButton.was_pressed():
             self.stateManager.switchGameState("GameScreen")
-        if xo_input.btn_check or self.instructionsButton.was_pressed():
+        if self.instructionsButton.was_pressed():
             self.stateManager.switchGameState("InstructionsScreen")
-        if xo_input.btn_check or self.highScoresButton.was_pressed():
+        if self.highScoresButton.was_pressed():
             self.stateManager.switchGameState("HighScoreScreen")
-        if xo_input.btn_check or self.aboutButton.was_pressed():
+        if self.aboutButton.was_pressed():
             self.stateManager.switchGameState("AboutScreen")
+
         self.uiContainer.update()
     
     def draw(self):

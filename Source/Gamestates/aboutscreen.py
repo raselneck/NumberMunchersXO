@@ -12,10 +12,11 @@ class AboutScreen:
         pass
         
     def update(self):
-        pass
+        if (xo_input.btn_check):
+            self.stateManager.switchGameState("MainScreen")
     
     def draw(self):
-        pass
+        pygame.draw.rect(self.window, (255, 0, 0), (50, 200, 50, 50), 0)
     
     def final(self):
         pass

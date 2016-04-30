@@ -5,15 +5,13 @@ class UIContainer(object):
     """
     Defines a container for all UI components.
     """
-    __components = []
-    __selectedComponent = None
-    __window = None
-
     def __init__(self, window):
         """
         Creates a new UI container.
         """
         self.__window = window
+        self.__components = []
+        self.selectedComponents = None
 
     def add_button(self):
         """
