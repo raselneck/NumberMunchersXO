@@ -105,6 +105,8 @@ stateManager.addGameState("HighScoreScreen", HighScoreScreen(stateManager, windo
 # Prevent extra states being added after game starts
 stateManager.gameRunning = True
 
+# stateManager.switchGameState("MainScreen")
+
 # Run the game loop
 is_running = True
 while (is_running):
