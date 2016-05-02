@@ -1,0 +1,86 @@
+{
+	"highscores": {
+		"first": {
+			"score": 1000,
+			"name": "Robert"
+		},
+		"second": {
+			"score": 900,
+			"name": "Mary"
+		},
+		"third": {
+			"score": 800,
+			"name": "Sarah"
+		},
+		"fourth": {
+			"score": 700,
+			"name": "Saerha"
+		},
+		"fifth": {
+			"score": 600,
+			"name": "Glenjahmin"
+		},
+		"sixth": {
+			"score": 500,
+			"name": "A 'couple' of Spiders"
+		},
+		"seventh": {
+			"score": 400,
+			"name": "MOTHER"
+		},
+		"eighth": {
+			"score": 300,
+			"name": "Gregorian Chanting"
+		},
+		"ninth": {
+			"score": 200,
+			"name": "The cahnt in the hahnt"
+		},
+		"tenth": {
+			"score": 100,
+			"name": "Stehfon"
+		}
+	},
+	"default_highscores": {
+		"first": {
+			"score": 1000,
+			"name": "Robert"
+		},
+		"second": {
+			"score": 900,
+			"name": "Mary"
+		},
+		"third": {
+			"score": 800,
+			"name": "Sarah"
+		},
+		"fourth": {
+			"score": 700,
+			"name": "Saerha"
+		},
+		"fifth": {
+			"score": 600,
+			"name": "Glenjahmin"
+		},
+		"sixth": {
+			"score": 500,
+			"name": "A 'couple' of Spiders"
+		},
+		"seventh": {
+			"score": 400,
+			"name": "MOTHER"
+		},
+		"eighth": {
+			"score": 300,
+			"name": "Gregorian Chanting"
+		},
+		"ninth": {
+			"score": 200,
+			"name": "The cahnt in the hanht"
+		},
+		"tenth": {
+			"score": 100,
+			"name": "Stehfon"
+		}
+	}
+}

@@ -81,7 +81,6 @@ class MainScreen:
     def draw(self):
         # UI needs to be drawn LAST
         self.uiContainer.draw()
-        print "Drawing the main"
     
     def final(self):
         pass

@@ -38,7 +38,6 @@ class GameScreen:
         pygame.draw.rect(self.window, (255, 255, 255), (50, 50, 50, 50), 0)
         # UI needs to be drawn LAST
         self.uiContainer.draw()
-        print "Drawing the game"
     
     def final(self):
         pass

@@ -11,6 +11,8 @@ from Gamestates.instructionsscreen import InstructionsScreen
 from Gamestates.highscorescreen import HighScoreScreen
 from Gamestates.aboutscreen import AboutScreen
 
+from highscoremanager import HighScoreManager
+
 
 def exit_game(code):
     """
@@ -105,7 +107,8 @@ stateManager.addGameState("HighScoreScreen", HighScoreScreen(stateManager, windo
 # Prevent extra states being added after game starts
 stateManager.gameRunning = True
 
-# stateManager.switchGameState("MainScreen")
+# Load in the current high scores
+highScoreManager = HighScoreManager()
 
 # Run the game loop
 is_running = True
