@@ -68,7 +68,7 @@ class HighScoreScreen:
             self.uiContainer.update()
         else:
             self.resetMessage.update()
-            if xo_input.btn_check or self.reset_cancelButton.was_pressed():
+            if self.reset_cancelButton.was_pressed():
                 self.initiateReset = False
             if self.reset_acceptButton.was_pressed():
                 self.highScoreManager.resetHighScores()

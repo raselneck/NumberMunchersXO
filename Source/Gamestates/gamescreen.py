@@ -24,12 +24,12 @@ class GameScreen:
         for i in range(0, 5):
             for j in range(0, 5):
                 button = self.uiContainer.add_button()
-                button.rect = pygame.Rect((padding * (i + 1)) + (width * i), (padding * (j + 1)) + (height * j), width, height)
+                # button.rect = pygame.Rect((padding * (i + 1)) + (width * i), (padding * (j + 1)) + (height * j), width, height)
                 button.rect = pygame.Rect((padding * i) + (width * i) + side_margin, (padding * j) + (height * j) + top_margin, width, height)
         pass
         
     def update(self):
-        if (xo_input.btn_check):
+        if (xo_input.btn_cross):
             self.stateManager.switchGameState("MainScreen")
 
         self.uiContainer.update()
