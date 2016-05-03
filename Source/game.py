@@ -20,6 +20,7 @@ def exit_game(code):
 
     :param code: The exit code.
     """
+    highScoreManager.saveHighScores()
     pygame.quit()
     sys.exit(code)
 
