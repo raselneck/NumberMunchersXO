@@ -1,7 +1,7 @@
 import pygame
 from input import xo_input
 from UI.uicontainer import UIContainer
-
+from UI.button import Button
 
 class MainScreen:
     """
@@ -12,44 +12,46 @@ class MainScreen:
         self.window = screen
 
         self.uiContainer = UIContainer(self.window)
-        
+        self.uiContainer.horizontalStride = 0
+
         self.screenInfo = pygame.display.Info()
         
-        # Button sizes
-        width = 150
-        height = 20
+        # Button sizes and positions
+        width = 170
+        height = 40
+        cx = self.screenInfo.current_w / 2
+        cy = self.screenInfo.current_h / 2
+        bx = cx - (width / 2)
+        padding = 20
+        dy = padding / 2 + height
 
         # Start game button
-        self.gameButton = self.uiContainer.add_button()
-        self.gameButton.rect = pygame.Rect((self.screenInfo.current_w / 2) - (width / 2),
-                                           (self.screenInfo.current_h / 2) - 60 - (height / 2), width, height)
-        self.gameButton.text = "Start Game"
+        self.gameButton = self.uiContainer.add_button("Start Game", bx, 0, width, height)
+        self.gameButton.rect.y = cy - height * 2 - padding / 2
 
         # Instructions button
-        self.instructionsButton = self.uiContainer.add_button()
-        self.instructionsButton.rect = pygame.Rect((self.screenInfo.current_w / 2) - (width / 2),
-                                                   (self.screenInfo.current_h / 2) - 30 - (height / 2), width, height)
-        self.instructionsButton.text = "Instructions"
+        self.instructionsButton = self.uiContainer.add_button("Instructions", bx, 0, width, height)
+        self.instructionsButton.rect.y = self.gameButton.rect.y + dy
 
         # High Scores button
-        self.highScoresButton = self.uiContainer.add_button()
-        self.highScoresButton.rect = pygame.Rect((self.screenInfo.current_w / 2) - (width / 2),
-                                                 (self.screenInfo.current_h / 2) - (height / 2), width, height)
-        self.highScoresButton.text = "High Scores"
+        self.highScoresButton = self.uiContainer.add_button("High Scores", bx, 0, width, height)
+        self.highScoresButton.rect.y = self.instructionsButton.rect.y + dy
 
         # About button
-        # High Scores button
-        self.aboutButton = self.uiContainer.add_button()
-        self.aboutButton.rect = pygame.Rect((self.screenInfo.current_w / 2) - (width / 2),
-                                            (self.screenInfo.current_h / 2) + 30 - (height / 2), width, height)
-        self.aboutButton.text = "About"
-        
-        self.gameButton.baseColour = self.instructionsButton.baseColour = self.highScoresButton.baseColour = self.aboutButton.baseColour = (0, 0, 0)
-        self.gameButton.hoverColour = self.instructionsButton.hoverColour = self.highScoresButton.hoverColour = self.aboutButton.hoverColour = (255, 255, 255)
-        self.gameButton.clickColour = self.instructionsButton.clickColour = self.highScoresButton.clickColour = self.aboutButton.clickColour = (128, 128, 128)
-        
-        self.gameButton.hoverFill = self.instructionsButton.hoverFill = self.highScoresButton.hoverFill = self.aboutButton.hoverFill = 1
-        pass
+        self.aboutButton = self.uiContainer.add_button("About", bx, 0, width, height)
+        self.aboutButton.rect.y = self.highScoresButton.rect.y + dy
+
+        # Set button colors
+        baseColor = (0, 0, 0)
+        hoverColor = (255, 255, 255)
+        clickColor = (128, 128, 128)
+        hoverFill = 1
+        for button in self.uiContainer.components:
+            if isinstance(button, Button):
+                button.baseColour = baseColor
+                button.hoverColour = hoverColor
+                button.clickColour = clickColor
+                button.hoverFill = hoverFill
 
     def start(self):
         pass

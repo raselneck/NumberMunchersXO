@@ -11,7 +11,8 @@ class HighScoreScreen:
         self.window = screen
         
         self.uiContainer = UIContainer(self.window)
-        
+        self.uiContainer.verticalStride = 0
+
         self.screenInfo = pygame.display.Info()
         
         self.titleFont = pygame.font.SysFont("monospace", 45, bold=True)
@@ -23,8 +24,8 @@ class HighScoreScreen:
         self.resetMessage = MessageWindow(self.window, "WARNING: That action cannot be undone. Are you positive you want to reset the scores to their default state?", 500, 200, self.screenInfo.current_w/2, self.screenInfo.current_h/2)
         
         # Button sizes
-        width = 150
-        height = 20
+        width = 170
+        height = 40
 
         # Back button
         self.backButton = self.uiContainer.add_button()

@@ -26,13 +26,15 @@ class UIContainer(object):
             self.selectedComponent = self.components[0]
             self.selectedComponent.selected = True
 
-    def add_button(self):
+    def add_button(self, title = "", x = 0, y = 0, width = 0, height = 0):
         """
         Adds a button to this container.
 
         :return: The button.
         """
         button = Button(self)
+        button.text = title
+        button.rect = pygame.Rect(x, y, width, height)
         self.components.append(button)
         self.__check_for_first_component()
         return button

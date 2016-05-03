@@ -4,6 +4,7 @@ from gamestatemanager import *
 from input import xo_input
 from pygame.locals import *
 from random import *
+import os
 
 from Gamestates.mainscreen import MainScreen
 from Gamestates.gamescreen import GameScreen
@@ -34,6 +35,7 @@ def create_window(resolution = (100, 100), flags = 0, depth = 32, title = "Hello
     :param title: The window title.
     :return: The window.
     """
+    os.environ["SDL_VIDEO_CENTERED"] = "1"
     window = pygame.display.set_mode(resolution, flags, depth)
     pygame.display.set_caption(title)
     return window
@@ -56,11 +58,6 @@ def create_goal(start_fraction = frac_random()):
 
     return (correct_fracs, wrong_fracs)
 
-# Test two fractions
-fracA = Fraction(3, 9)
-fracB = Fraction(1, 3)
-assert fracA == fracB
-
 
 
 # Initialize pygame
@@ -75,6 +72,9 @@ screen_info = pygame.display.Info()
 # Make the game full screen
 window_flags = FULLSCREEN | DOUBLEBUF | NOFRAME
 window_size = (screen_info.current_w, screen_info.current_h)
+if sys.platform == "win32":
+    window_size = (1200, 900)
+    window_flags = DOUBLEBUF | NOFRAME
 window = create_window(window_size, window_flags, 32, "PyGame Test")
 clear_color = (0, 0, 0)
 
@@ -85,14 +85,7 @@ equalFractions = []
 for x in range(1, 30):
     fractionAnswers.append(frac_random())
     equalFractions.append(fractionAnswers[x-1].get_equal_fraction())
-    print("{0} == {1}".format(fractionAnswers[x-1], equalFractions[x-1]))
-
 right_fracs, wrong_fracs = create_goal(frac_random())
-for x in range(len(right_fracs)):
-    print("Find these multiples {0}".format(right_fracs[x-1]))
-
-for x in range(len(wrong_fracs)):
-    print("These multiples are wrong {0}".format(wrong_fracs[x - 1]))
 
 # Load in the current high scores
 highScoreManager = HighScoreManager()
