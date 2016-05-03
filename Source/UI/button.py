@@ -53,8 +53,6 @@ class Button(UIComponent):
         """
         Updates this button.
         """
-        mouseX = xo_input.mouse_x
-        mouseY = xo_input.mouse_y
 
         # Ensure people can't drag over the button with the mouse button already down
         if not self.__isHovering:
@@ -66,9 +64,11 @@ class Button(UIComponent):
                 self.__canBeDown = True
 
         # Check if the mouse is hovering over us
-        bAlignedX = (mouseX >= self.rect.left) and (mouseX <= self.rect.right)
-        bAlignedY = (mouseY >= self.rect.top) and (mouseY <= self.rect.bottom)
-        self.__isHovering = bAlignedX and bAlignedY
+        #mouseX = xo_input.mouse_x
+        #mouseY = xo_input.mouse_y
+        #bAlignedX = (mouseX >= self.rect.left) and (mouseX <= self.rect.right)
+        #bAlignedY = (mouseY >= self.rect.top) and (mouseY <= self.rect.bottom)
+        #self.__isHovering = bAlignedX and bAlignedY
 
         # Check if the mouse is down on us
         if self.__canBeDown:

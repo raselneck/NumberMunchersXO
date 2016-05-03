@@ -26,7 +26,7 @@ class UIContainer(object):
             self.selectedComponent = self.components[0]
             self.selectedComponent.selected = True
 
-    def add_button(self, title = "", x = 0, y = 0, width = 0, height = 0):
+    def add_button(self, title = "DefaultText", x = 0, y = 0, width = 0, height = 0):
         """
         Adds a button to this container.
 
