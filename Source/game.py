@@ -94,6 +94,9 @@ for x in range(len(right_fracs)):
 for x in range(len(wrong_fracs)):
     print("These multiples are wrong {0}".format(wrong_fracs[x - 1]))
 
+# Load in the current high scores
+highScoreManager = HighScoreManager()
+
 # Add GameStates here
 # Format for game states is any class with a
 # Start, Update, Draw, and Final function
@@ -103,13 +106,12 @@ stateManager.addGameState("MainScreen", MainScreen(stateManager, window))
 stateManager.addGameState("GameScreen", GameScreen(stateManager, window))
 stateManager.addGameState("AboutScreen", AboutScreen(stateManager, window))
 stateManager.addGameState("InstructionsScreen", InstructionsScreen(stateManager, window))
-stateManager.addGameState("HighScoreScreen", HighScoreScreen(stateManager, window))
+stateManager.addGameState("HighScoreScreen", HighScoreScreen(stateManager, highScoreManager, window))
 
 # Prevent extra states being added after game starts
 stateManager.gameRunning = True
 
-# Load in the current high scores
-highScoreManager = HighScoreManager()
+
 
 # Run the game loop
 is_running = True
