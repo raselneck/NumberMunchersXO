@@ -8,6 +8,7 @@ class GameScreen:
         self.window = screen
 
         self.uiContainer = UIContainer(self.window)
+        self.uiContainer.horizontalStride = 5
 
         self.screenInfo = pygame.display.Info()
         pass

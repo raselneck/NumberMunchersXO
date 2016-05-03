@@ -6,10 +6,6 @@ class Button(UIComponent):
     """
     Defines a UI button.
     """
-    __canBeDown = True
-    __isHovering = False
-    __isDown = False
-    __wasPressed = False
 
     def __init__(self, container):
         """
@@ -19,6 +15,11 @@ class Button(UIComponent):
         """
         UIComponent.__init__(self, container)
         self.selectable = True
+        self.__canBeDown = True
+        self.__isHovering = False
+        self.__isDown = False
+        self.__wasPressed = False
+        self.__simulatePress = False
 
         self.font = pygame.font.SysFont("monospace", 15)
         self.text = "Default String"
@@ -33,8 +34,6 @@ class Button(UIComponent):
         self.baseFill = 0
         self.hoverFill = 0
         self.clickFill = 0
-        
-        
 
     def was_pressed(self):
         """
@@ -43,6 +42,12 @@ class Button(UIComponent):
         :return: True if the button was pressed, false if not.
         """
         return self.__wasPressed
+
+    def simulate_press(self):
+        """
+        Simulates this button being pressed.
+        """
+        self.__simulatePress = True
 
     def update(self):
         """
@@ -76,13 +81,18 @@ class Button(UIComponent):
             # Update actual down state
             self.__isDown = self.__isHovering and xo_input.mouse_left_down
 
+        # If we're simulating a press, just set our flag to true
+        if self.__simulatePress:
+            self.__simulatePress = False
+            self.__wasPressed = True
+
     def draw(self):
         """
         Draws this button.
         """
         if self.__isDown:
             pygame.draw.rect(self.container.get_window(), self.clickColour, self.rect, self.clickFill)
-        elif self.__isHovering:
+        elif self.__isHovering or self.selected:
             pygame.draw.rect(self.container.get_window(), self.hoverColour, self.rect, self.hoverFill)
         else:
             pygame.draw.rect(self.container.get_window(), self.baseColour, self.rect, self.baseFill)

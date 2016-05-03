@@ -4,9 +4,6 @@ class UIComponent:
     """
     The base class for all UI components.
     """
-    rect = pygame.Rect(0, 0, 0, 0)
-    selectable = False
-    container = None
 
     def __init__(self, container):
         """
@@ -15,13 +12,18 @@ class UIComponent:
         :param container: The parent UI container
         """
         self.container = container
+        self.selectable = False
+        self.selected = False
+        self.rect = pygame.Rect(0, 0, 0, 0)
 
     def update(self):
         """
         Updates this component.
         """
+        pass
 
     def draw(self):
         """
         Draws this component.
         """
+        pass
