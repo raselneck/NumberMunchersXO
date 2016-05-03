@@ -1,6 +1,7 @@
 import pygame, sys
 from input import xo_input
 from UI.uicontainer import UIContainer
+from messagewindow import MessageWindow
 
 class HighScoreScreen:
 
@@ -18,14 +19,8 @@ class HighScoreScreen:
         self.textColour = (128, 128, 128)
         
         self.initiateReset = False
-        pass
-
-    def start(self):
-        #Get most recent scores
-        self.highScores = self.highScoreManager.getCurrentHighScores()
         
-        # Reset the reset variable - lol
-        self.initiateReset = False
+        self.resetMessage = MessageWindow(self.window, "WARNING: That action cannot be undone. Are you positive you want to reset the scores to their default state?", 500, 200, self.screenInfo.current_w/2, self.screenInfo.current_h/2)
         
         # Button sizes
         width = 150
@@ -40,6 +35,24 @@ class HighScoreScreen:
         self.resetButton = self.uiContainer.add_button()
         self.resetButton.rect = pygame.Rect(self.screenInfo.current_w - 100 - (width / 2), self.screenInfo.current_h - 50 - (height / 2), width, height)
         self.resetButton.text = "Reset Highscores"
+
+        self.reset_acceptButton = self.resetMessage.addButton("Yes, I'm sure", (-230, 65), (130, 20))
+        self.reset_cancelButton = self.resetMessage.addButton("No", (100, 65), (130, 20))
+        
+        self.backButton.baseColour = self.resetButton.baseColour = (0, 0, 0)
+        self.reset_cancelButton.baseColour = self.reset_acceptButton.baseColour = (16, 16, 16)
+        self.backButton.hoverColour = self.resetButton.hoverColour = self.reset_cancelButton.hoverColour = self.reset_acceptButton.hoverColour = (255, 255, 255)
+        self.backButton.clickColour = self.resetButton.clickColour = self.reset_cancelButton.clickColour = self.reset_acceptButton.clickColour = (128, 128, 128)
+        
+        self.backButton.hoverFill = self.resetButton.hoverFill = self.reset_cancelButton.hoverFill = self.reset_acceptButton.hoverFill = 1
+        pass
+
+    def start(self):
+        #Get most recent scores
+        self.highScores = self.highScoreManager.getCurrentHighScores()
+        
+        # Reset the reset variable - lol
+        self.initiateReset = False
         pass
         
     def update(self):
@@ -53,9 +66,13 @@ class HighScoreScreen:
 
             self.uiContainer.update()
         else:
-            if xo_input.btn_check:
-                self.stateManager.switchGameState("MainScreen")
-    
+            self.resetMessage.update()
+            if xo_input.btn_check or self.reset_cancelButton.was_pressed():
+                self.initiateReset = False
+            if self.reset_acceptButton.was_pressed():
+                self.highScoreManager.resetHighScores()
+                self.initiateReset = False
+
     def draw(self):
         self.drawText("HIGH SCORES", self.titleFont, 0, -130)
         self.drawTextWithTuple((self.highScores["first"]["name"], self.highScores["first"]["score"]), self.scoreFont, 0, -95)
@@ -70,6 +87,10 @@ class HighScoreScreen:
         self.drawTextWithTuple((self.highScores["tenth"]["name"], self.highScores["tenth"]["score"]), self.scoreFont, 0, 130)
         
         self.uiContainer.draw()
+        
+        if self.initiateReset:
+            self.resetMessage.draw()
+            
         pass
     
     def final(self):
