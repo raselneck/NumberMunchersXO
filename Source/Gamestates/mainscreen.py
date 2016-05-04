@@ -52,6 +52,9 @@ class MainScreen:
                 button.hoverColour = hoverColor
                 button.clickColour = clickColor
                 button.hoverFill = hoverFill
+                
+        # Load title image
+        self.titleImage = pygame.image.load("../Media/Images/titleXO.png").convert()
 
     def start(self):
         pass
@@ -70,6 +73,9 @@ class MainScreen:
         self.uiContainer.update()
     
     def draw(self):
+        
+        self.window.blit(self.titleImage, ((self.screenInfo.current_w/2) - (self.titleImage.get_rect().width/2), 50))
+        
         # UI needs to be drawn LAST
         self.uiContainer.draw()
     

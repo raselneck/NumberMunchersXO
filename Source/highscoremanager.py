@@ -67,7 +67,7 @@ class HighScoreManager:
             newKey = "fifth"
         if self.high_scores["fourth"]["score"] < new_score:
             self.high_scores["fifth"]["score"] = self.high_scores["fourth"]["score"]
-            elf.high_scores["fifth"]["name"] = self.high_scores["fourth"]["name"]
+            self.high_scores["fifth"]["name"] = self.high_scores["fourth"]["name"]
             newKey = "fourth"
         if self.high_scores["third"]["score"] < new_score:
             self.high_scores["fourth"]["score"] = self.high_scores["third"]["score"]
