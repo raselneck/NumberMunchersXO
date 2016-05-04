@@ -89,11 +89,13 @@ class UIContainer(object):
 
         # Update all of the components
         for component in self.components:
-            component.update()
+            if component.enabled:
+                component.update()
 
     def draw(self):
         """
         Draws all of the UI components in this container.
         """
         for component in self.components:
-            component.draw()
+            if component.enabled:
+                component.draw()
