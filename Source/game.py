@@ -3,7 +3,6 @@ from fraction import *
 from gamestatemanager import *
 from input import xo_input
 from pygame.locals import *
-from random import *
 import os
 
 from Gamestates.mainscreen import MainScreen
@@ -40,25 +39,6 @@ def create_window(resolution = (100, 100), flags = 0, depth = 32, title = "Hello
     pygame.display.set_caption(title)
     return window
 
-def create_goal(start_fraction = frac_random()):
-    """
-    creates a list of correct fractions and incorrect fractions from the given fraction
-    :param start_fraction: the fraction that all of the correct fractions are based on
-    :return: a list of correct and incorrect fractions
-    """
-    correct_fracs =[]
-    wrong_fracs = []
-    rand = randint(5,20)
-
-    for x in range(rand):
-        correct_fracs.append(start_fraction.get_equal_fraction())
-
-    for x in range(25-rand):
-        wrong_fracs.append(start_fraction.get_inequal_fraction())
-
-    return (correct_fracs, wrong_fracs)
-
-
 
 # Initialize pygame
 passed, failed = pygame.init()
@@ -79,13 +59,7 @@ window = create_window(window_size, window_flags, 32, "PyGame Test")
 clear_color = (0, 0, 0)
 
 
-fractionAnswers = []
-equalFractions = []
-    
-for x in range(1, 30):
-    fractionAnswers.append(frac_random())
-    equalFractions.append(fractionAnswers[x-1].get_equal_fraction())
-right_fracs, wrong_fracs = create_goal(frac_random())
+
 
 # Load in the current high scores
 highScoreManager = HighScoreManager()
