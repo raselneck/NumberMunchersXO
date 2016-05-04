@@ -35,6 +35,17 @@ class Button(UIComponent):
         self.hoverFill = 0
         self.clickFill = 0
 
+    def disable(self):
+        """
+        Disables this button.
+        """
+        UIComponent.disable(self)
+        self.__canBeDown = False
+        self.__isHovering = False
+        self.__isDown = False
+        self.__wasPressed = False
+        self.__simulatePress = False
+
     def was_pressed(self):
         """
         Checks to see if this button was pressed.

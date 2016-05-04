@@ -14,8 +14,20 @@ class UIComponent:
         self.container = container
         self.selectable = False
         self.selected = False
-        self.enabled = True
+        self.__enabled = True
         self.rect = pygame.Rect(0, 0, 0, 0)
+
+    def enable(self):
+        """
+        Enables this component.
+        """
+        self.__enabled = True
+
+    def disable(self):
+        """
+        Enables this component.
+        """
+        self.__enabled = False
 
     def update(self):
         """
