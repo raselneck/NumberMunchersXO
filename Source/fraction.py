@@ -1,4 +1,5 @@
 from __future__ import division
+from random import *
 import random
 import calendar, time
 
@@ -158,3 +159,21 @@ def frac_random():
         while (num >= denom):
             denom = frac_random_denominator()
     return Fraction(num, denom)
+
+def create_goal(start_fraction = frac_random()):
+    """
+    creates a list of correct fractions and incorrect fractions from the given fraction
+    :param start_fraction: the fraction that all of the correct fractions are based on
+    :return: a list of correct and incorrect fractions
+    """
+    correct_fracs =[]
+    wrong_fracs = []
+    rand = randint(5,20)
+
+    for x in range(rand):
+        correct_fracs.append(start_fraction.get_equal_fraction())
+
+    for x in range(25-rand):
+        wrong_fracs.append(start_fraction.get_inequal_fraction())
+
+    return (correct_fracs, wrong_fracs)
