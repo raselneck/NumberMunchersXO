@@ -14,7 +14,7 @@ class GameScreen:
         self.initializedUI = False
 
         self.titleFont = pygame.font.SysFont("monospace", 45, bold=True)
-        self.scoreFont = pygame.font.SysFont("monospace", 20)
+        self.scoreFont = pygame.font.SysFont("monospace", 30)
         self.textColour = (128, 128, 128)
 
         self.screenInfo = pygame.display.Info()
@@ -80,15 +80,18 @@ class GameScreen:
 
         endLoop = False
         for button in self.uiContainer.components:
-            if(button.was_pressed()):
+            if(button.text != "" and button.was_pressed()):
                 for frac in self.right_fracs:
                     print("frac: " + str(frac) + " button: " + button.text)
                     if(str(frac) == button.text):
                         self.score += 10
-                        button.disable()
+                        button.text = ""
                         endLoop = True
                         break
                 print("Score: " + str(self.score))
+                if(not endLoop):
+                    self.score -= 5
+                    button.text = ""
             #if(endLoop == True):
             #    print("breaking")
             #    break
@@ -97,7 +100,8 @@ class GameScreen:
         self.uiContainer.update()
     
     def draw(self):
-        pygame.draw.rect(self.window, (255, 255, 255), (50, 50, 50, 50), 0)
+        self.drawText("Score: " + str(self.score), self.scoreFont, (-self.screenInfo.current_w/2)+90,
+                      (-self.screenInfo.current_h / 2) + 110)
         self.drawText("Find these multiples: " + str(self.answer), self.titleFont, 0, (-self.screenInfo.current_h/2) + 70)
         # UI needs to be drawn LAST
         self.uiContainer.draw()
