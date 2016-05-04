@@ -80,18 +80,18 @@ class GameScreen:
 
         endLoop = False
         for button in self.uiContainer.components:
-            if(button.enabled and button.was_pressed()):
+            if(button.was_pressed()):
                 for frac in self.right_fracs:
                     print("frac: " + str(frac) + " button: " + button.text)
                     if(str(frac) == button.text):
                         self.score += 10
-                        button.enabled = False
+                        button.disable()
                         endLoop = True
                         break
                 print("Score: " + str(self.score))
-            if(endLoop == True):
-                print("breaking")
-                break
+            #if(endLoop == True):
+            #    print("breaking")
+            #    break
 
 
         self.uiContainer.update()

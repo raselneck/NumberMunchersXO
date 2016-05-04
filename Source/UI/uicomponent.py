@@ -17,6 +17,9 @@ class UIComponent:
         self.__enabled = True
         self.rect = pygame.Rect(0, 0, 0, 0)
 
+    def enabled(self):
+        return self.__enabled
+
     def enable(self):
         """
         Enables this component.
