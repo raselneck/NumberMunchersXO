@@ -71,19 +71,20 @@ class Button(UIComponent):
         #self.__isHovering = bAlignedX and bAlignedY
 
         # Check if the mouse is down on us
-        #if self.__canBeDown:
-        #    # Check if we were pressed
-        #    if self.__isDown and xo_input.mouse_left_up:
-        #        self.__wasPressed = True
-        #    else:
-        #        self.__wasPressed = False
+        if self.__canBeDown:
+            # Check if we were pressed
+            if self.__isDown: # and xo_input.mouse_left_up:
+                self.__wasPressed = True
+            else:
+                self.__wasPressed = False
             # Update actual down state
-        #    self.__isDown = self.__isHovering and xo_input.mouse_left_down
+            self.__isDown = self.__isHovering # and xo_input.mouse_left_down
 
         # If we're simulating a press, just set our flag to true
         if self.__simulatePress:
             self.__simulatePress = False
             self.__wasPressed = True
+            self.__isDown = True
 
     def draw(self):
         """
