@@ -84,6 +84,7 @@ class Button(UIComponent):
         if self.__simulatePress:
             self.__simulatePress = False
             self.__wasPressed = True
+            self.__isDown = True
 
     def draw(self):
         """
