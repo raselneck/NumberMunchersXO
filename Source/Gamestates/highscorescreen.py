@@ -30,18 +30,7 @@ class HighScoreScreen:
         # Get most recent scores
         self.highScores = self.highScoreManager.getCurrentHighScores()
         self.initialHighScoreLoad = True
-
-        # The tuples containing all of the highscores
-        self.highScoreTuples = ((self.highScores["first"]["name"], self.highScores["first"]["score"]),
-                                (self.highScores["second"]["name"], self.highScores["second"]["score"]),
-                                (self.highScores["third"]["name"], self.highScores["third"]["score"]),
-                                (self.highScores["fourth"]["name"], self.highScores["fourth"]["score"]),
-                                (self.highScores["fifth"]["name"], self.highScores["fifth"]["score"]),
-                                (self.highScores["sixth"]["name"], self.highScores["sixth"]["score"]),
-                                (self.highScores["seventh"]["name"], self.highScores["seventh"]["score"]),
-                                (self.highScores["eighth"]["name"], self.highScores["eighth"]["score"]),
-                                (self.highScores["ninth"]["name"], self.highScores["ninth"]["score"]),
-                                (self.highScores["tenth"]["name"], self.highScores["tenth"]["score"]))
+        self.updateHighScores()
 
         # Button sizes
         width = 170
@@ -69,15 +58,31 @@ class HighScoreScreen:
         if self.initialHighScoreLoad:
             self.initialHighScoreLoad = False
         else:
-            self.highScores = self.highScoreManager.getCurrentHighScores()
+            self.updateHighScores()
 
         # Reset the reset variable - lol
         self.initiateReset = False
         pass
-        
-    def update(self):
+
+    def updateHighScores(self):
+        """
+        Updates the high score tuple.
+        """
         self.highScores = self.highScoreManager.getCurrentHighScores()
-        
+        self.highScoreTuples = ((self.highScores["first"]["name"], self.highScores["first"]["score"]),
+                                (self.highScores["second"]["name"], self.highScores["second"]["score"]),
+                                (self.highScores["third"]["name"], self.highScores["third"]["score"]),
+                                (self.highScores["fourth"]["name"], self.highScores["fourth"]["score"]),
+                                (self.highScores["fifth"]["name"], self.highScores["fifth"]["score"]),
+                                (self.highScores["sixth"]["name"], self.highScores["sixth"]["score"]),
+                                (self.highScores["seventh"]["name"], self.highScores["seventh"]["score"]),
+                                (self.highScores["eighth"]["name"], self.highScores["eighth"]["score"]),
+                                (self.highScores["ninth"]["name"], self.highScores["ninth"]["score"]),
+                                (self.highScores["tenth"]["name"], self.highScores["tenth"]["score"]))
+
+    def update(self):
+        self.updateHighScores()
+
         if not self.initiateReset:
             if self.backButton.was_pressed():
                 self.stateManager.switchGameState("MainScreen")
