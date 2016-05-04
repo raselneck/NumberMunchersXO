@@ -55,13 +55,13 @@ class Button(UIComponent):
         """
 
         # Ensure people can't drag over the button with the mouse button already down
-        #if not self.__isHovering:
-        #    self.__canBeDown = True
-        #    if xo_input.mouse_left_down:
-        #        self.__canBeDown = False
-        #else:
-        #    if not xo_input.mouse_left_down:
-        #        self.__canBeDown = True
+        if not self.__isHovering:
+            self.__canBeDown = True
+            if xo_input.mouse_left_down:
+                self.__canBeDown = False
+        else:
+            if not xo_input.mouse_left_down:
+                self.__canBeDown = True
 
         # Check if the mouse is hovering over us
         #mouseX = xo_input.mouse_x
@@ -84,7 +84,6 @@ class Button(UIComponent):
         if self.__simulatePress:
             self.__simulatePress = False
             self.__wasPressed = True
-            self.__isDown = True
 
     def draw(self):
         """
