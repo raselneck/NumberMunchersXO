@@ -49,8 +49,8 @@ class Enemy:
         
         self.currtime = time.time()
         if self.index == self.playerI and self.visible:
-            print("colliding with enemy")
-
+            self.visible = False
+            return True
         if self.currtime >= self.start  + 2 and self.visible:
             self.start = time.time()
             self.move()

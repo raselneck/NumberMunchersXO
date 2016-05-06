@@ -102,14 +102,7 @@ class GameScreen:
                     self.score -= self.scoreLoss
                     self.wrongAnswers += 1
 
-                    if(self.wrongAnswers == 3):
-                        setScore(self.score)
-                        self.highScoreManager.addHighScore(self.score, "Cool Dude")
-                        self.resetLevel()
-                        self.score = 0
-
-                        self.stateManager.switchGameState("WinScreen")
-                        self.initializedUI = False
+                    
 
                     button.text = ""
 
@@ -118,7 +111,14 @@ class GameScreen:
                     print("You got them all!")
                     self.resetLevel()
                     self.stateManager.switchGameState("GameScreen")
+        if(self.wrongAnswers == 3):
+            setScore(self.score)
+            self.highScoreManager.addHighScore(self.score, "Cool Dude")
+            self.resetLevel()
+            self.score = 0
 
+            self.stateManager.switchGameState("WinScreen")
+            self.initializedUI = False
 
         self.uiContainer.update()
     
@@ -128,8 +128,11 @@ class GameScreen:
         self.drawText("Find these multiples: " + str(self.answer), self.titleFont, 0, (-self.screenInfo.current_h/2) + 70)
         # UI needs to be drawn LAST
         self.uiContainer.draw()
-        self.enemy.update(self.uiContainer.selectedIndex);
-    
+        #returns true if colliding with enemy
+        if self.enemy.update(self.uiContainer.selectedIndex):
+            self.score -= self.scoreLoss
+            self.wrongAnswers += 1
+
     def final(self):
         pass
 
