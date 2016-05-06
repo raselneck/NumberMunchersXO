@@ -10,6 +10,7 @@ from Gamestates.gamescreen import GameScreen
 from Gamestates.instructionsscreen import InstructionsScreen
 from Gamestates.highscorescreen import HighScoreScreen
 from Gamestates.aboutscreen import AboutScreen
+from Gamestates.winscreen import WinScreen
 
 from highscoremanager import HighScoreManager
 
@@ -70,10 +71,11 @@ highScoreManager = HighScoreManager()
 # These are automatically called
 stateManager = GameStateManager()
 stateManager.addGameState("MainScreen", MainScreen(stateManager, window))
-stateManager.addGameState("GameScreen", GameScreen(stateManager, window))
+stateManager.addGameState("GameScreen", GameScreen(stateManager, highScoreManager, window))
 stateManager.addGameState("AboutScreen", AboutScreen(stateManager, window))
 stateManager.addGameState("InstructionsScreen", InstructionsScreen(stateManager, window))
 stateManager.addGameState("HighScoreScreen", HighScoreScreen(stateManager, highScoreManager, window))
+stateManager.addGameState("WinScreen", WinScreen(stateManager, window))
 
 # Prevent extra states being added after game starts
 stateManager.gameRunning = True

@@ -3,11 +3,13 @@ from input import xo_input
 from UI.uicontainer import UIContainer
 from fraction import *
 from copy import deepcopy
+from Gamestates.winscreen import *
 
 class GameScreen:
-    def __init__(self, manager, screen):
+    def __init__(self, manager, highScoreManager, screen):
         self.stateManager = manager
         self.window = screen
+        self.highScoreManager = highScoreManager
 
         self.uiContainer = UIContainer(self.window)
         self.uiContainer.horizontalStride = 5
@@ -18,6 +20,9 @@ class GameScreen:
         self.textColour = (128, 128, 128)
 
         self.screenInfo = pygame.display.Info()
+
+        self.addScore = 20
+        self.scoreLoss = 5
         pass
 
     def start(self):
@@ -84,14 +89,22 @@ class GameScreen:
                 for frac in self.right_fracs:
                     print("frac: " + str(frac) + " button: " + button.text)
                     if(str(frac) == button.text):
-                        self.score += 10
+                        self.score += self.addScore
                         button.text = ""
                         endLoop = True
+                        self.right_fracs.remove(frac)
                         break
                 print("Score: " + str(self.score))
                 if(not endLoop):
-                    self.score -= 5
+                    self.score -= self.scoreLoss
                     button.text = ""
+
+                print("length of right " + str(len(self.right_fracs)))
+                if(len(self.right_fracs) == 0):
+                    print("You got them all!")
+                    setScore(self.score)
+                    self.highScoreManager.addHighScore(self.score, "Cool Dude")
+                    self.stateManager.switchGameState("WinScreen")
 
 
         self.uiContainer.update()
