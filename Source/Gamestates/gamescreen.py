@@ -92,9 +92,6 @@ class GameScreen:
                 if(not endLoop):
                     self.score -= 5
                     button.text = ""
-            #if(endLoop == True):
-            #    print("breaking")
-            #    break
 
 
         self.uiContainer.update()
