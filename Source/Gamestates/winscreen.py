@@ -22,7 +22,7 @@ class WinScreen:
             self.stateManager.switchGameState("MainScreen")
 
     def draw(self):
-        self.drawText("You Win!", self.titleFont, 0, -50)
+        self.drawText("Game Over!", self.titleFont, 0, -50)
         self.drawText("Final Score: " + str(self.score), self.titleFont, 0, 50)
 
     def final(self):
