@@ -53,7 +53,6 @@ class UIContainer(object):
         """
         if len(self.components) > 0:
             changedSelection = False
-
             # Modify the selected index based on which DPad key was pressed
             if xo_input.dpad_left:
                 self.selectedIndex -= self.horizontalStride

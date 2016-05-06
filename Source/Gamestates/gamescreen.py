@@ -4,6 +4,7 @@ from UI.uicontainer import UIContainer
 from fraction import *
 from copy import deepcopy
 from Gamestates.winscreen import *
+from enemy import Enemy
 
 class GameScreen:
     def __init__(self, manager, highScoreManager, screen):
@@ -35,7 +36,7 @@ class GameScreen:
         top_margin = 150
         width = (self.screenInfo.current_w - (padding * 5) - (side_margin * 2)) / 5
         height = (self.screenInfo.current_h - (padding * 5) - (top_margin)) / 5
-
+        self.enemy = Enemy(self.window, width, height)
         self.fractionAnswers = []
         self.equalFractions = []
         self.answer = frac_random()
@@ -127,6 +128,7 @@ class GameScreen:
         self.drawText("Find these multiples: " + str(self.answer), self.titleFont, 0, (-self.screenInfo.current_h/2) + 70)
         # UI needs to be drawn LAST
         self.uiContainer.draw()
+        self.enemy.update(self.uiContainer.selectedIndex);
     
     def final(self):
         pass
