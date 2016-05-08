@@ -5,30 +5,33 @@ class Input:
     Defines an easy wrapper for PyGame to get input from the XO.
     """
 
-    dpad_up = False
-    dpad_down = False
-    dpad_left = False
-    dpad_right = False
-    btn_circle = False
-    btn_cross = False
-    btn_square = False
-    btn_check = False
-    mouse_x = 0
-    mouse_y = 0
-    mouse_left_down = False
-    mouse_left_up = False
-    mouse_left_pressed = False
-    mouse_right_down = False
-    mouse_right_up = False
-    mouse_right_pressed = False
-    __old_dpad_up = False
-    __old_dpad_down = False
-    __old_dpad_left = False
-    __old_dpad_right = False
-    __old_btn_circle = False
-    __old_btn_cross = False
-    __old_btn_square = False
-    __old_btn_check = False
+    def __init__(self):
+        self.dpad_up = False
+        self.dpad_down = False
+        self.dpad_left = False
+        self.dpad_right = False
+        self.btn_circle = False
+        self.btn_cross = False
+        self.btn_square = False
+        self.btn_check = False
+        self.mouse_x = 0
+        self.mouse_y = 0
+        self.mouse_left_down = False
+        self.mouse_left_up = False
+        self.mouse_left_pressed = False
+        self.mouse_right_down = False
+        self.mouse_right_up = False
+        self.mouse_right_pressed = False
+        self.escape = False
+        self.__old_dpad_up = False
+        self.__old_dpad_down = False
+        self.__old_dpad_left = False
+        self.__old_dpad_right = False
+        self.__old_btn_circle = False
+        self.__old_btn_cross = False
+        self.__old_btn_square = False
+        self.__old_btn_check = False
+        self.__old_escape = False
 
     def update(self):
         """
@@ -45,6 +48,7 @@ class Input:
         self.btn_cross          = not pressed[K_KP3] and self.__old_btn_cross
         self.btn_square         = not pressed[K_KP7] and self.__old_btn_square
         self.btn_check          = not pressed[K_KP1] and self.__old_btn_check
+        self.escape             = not pressed[K_ESCAPE] and self.__old_escape
         self.__old_dpad_up      = pressed[K_KP8]
         self.__old_dpad_down    = pressed[K_KP2]
         self.__old_dpad_left    = pressed[K_KP4]
@@ -53,6 +57,7 @@ class Input:
         self.__old_btn_cross    = pressed[K_KP3]
         self.__old_btn_square   = pressed[K_KP7]
         self.__old_btn_check    = pressed[K_KP1]
+        self.__old_escape       = pressed[K_ESCAPE]
 
         # Update mouse position
         position = mouse.get_pos()

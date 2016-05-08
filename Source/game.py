@@ -3,6 +3,7 @@ from fraction import *
 from gamestatemanager import *
 from input import xo_input
 from pygame.locals import *
+from exit import exit_game
 import os
 
 from Gamestates.mainscreen import MainScreen
@@ -12,18 +13,7 @@ from Gamestates.highscorescreen import HighScoreScreen
 from Gamestates.aboutscreen import AboutScreen
 from Gamestates.winscreen import WinScreen
 
-from highscoremanager import HighScoreManager
-
-
-def exit_game(code):
-    """
-    Exits the game with the given status code.
-
-    :param code: The exit code.
-    """
-    highScoreManager.saveHighScores()
-    pygame.quit()
-    sys.exit(code)
+from highscoremanager import *
 
 def create_window(resolution = (100, 100), flags = 0, depth = 32, title = "Hello, world!"):
     """
@@ -45,7 +35,7 @@ def create_window(resolution = (100, 100), flags = 0, depth = 32, title = "Hello
 passed, failed = pygame.init()
 if (failed > 0):
     print("One or more pygame submodules failed to initialize")
-    exit_game(-1)
+    exit_game(-1, None)
 
 # Get desktop information
 screen_info = pygame.display.Info()
@@ -58,10 +48,6 @@ if sys.platform == "win32":
     window_flags = DOUBLEBUF | NOFRAME
 window = create_window(window_size, window_flags, 32, "PyGame Test")
 clear_color = (0, 0, 0)
-
-
-# Load in the current high scores
-highScoreManager = HighScoreManager()
 
 # Add GameStates here
 # Format for game states is any class with a
@@ -85,9 +71,9 @@ while stateManager.gameRunning:
     for event in pygame.event.get():
         if event.type == QUIT:
             stateManager.gameRunning = False
-        if event.type == KEYDOWN:
-            if event.key == K_ESCAPE:
-                stateManager.gameRunning = False
+        #if event.type == KEYDOWN:
+        #    if event.key == K_ESCAPE:
+        #        stateManager.gameRunning = False
                 
     
     # Check if we changed states

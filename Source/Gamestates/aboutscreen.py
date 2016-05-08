@@ -12,7 +12,7 @@ class AboutScreen:
         pass
         
     def update(self):
-        if (xo_input.btn_cross):
+        if xo_input.btn_cross or xo_input.escape:
             self.stateManager.switchGameState("MainScreen")
     
     def draw(self):

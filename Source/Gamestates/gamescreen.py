@@ -81,7 +81,10 @@ class GameScreen:
 
         
     def update(self):
-        if (xo_input.btn_cross):
+        setScore(1000)
+        self.stateManager.switchGameState("WinScreen")
+
+        if xo_input.escape:
             self.resetLevel()
             self.score = 0
             self.stateManager.switchGameState("MainScreen")
@@ -107,7 +110,6 @@ class GameScreen:
             setScore(self.score)
             self.resetLevel()
             self.score = 0
-
             self.stateManager.switchGameState("WinScreen")
             self.initializedUI = False
 

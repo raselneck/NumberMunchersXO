@@ -107,3 +107,5 @@ class HighScoreManager:
     
     def __str__(self):
         return json.dumps(self.data, sort_keys=True, indent=4, separators=(",", ": "))
+
+highScoreManager = HighScoreManager()

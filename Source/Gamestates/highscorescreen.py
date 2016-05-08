@@ -84,7 +84,7 @@ class HighScoreScreen:
         self.updateHighScores()
 
         if not self.initiateReset:
-            if self.backButton.was_pressed():
+            if self.backButton.was_pressed() or xo_input.escape:
                 self.stateManager.switchGameState("MainScreen")
             if self.resetButton.was_pressed():
                 self.initiateReset = True

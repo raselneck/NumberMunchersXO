@@ -1,5 +1,6 @@
 import pygame
 from input import xo_input
+from exit import exit_game
 from UI.uicontainer import UIContainer
 from UI.button import Button
 
@@ -61,6 +62,9 @@ class MainScreen:
 
    
     def update(self):
+        if xo_input.escape:
+            exit_game(1)
+
         if self.gameButton.was_pressed():
             self.stateManager.switchGameState("GameScreen")
         if self.instructionsButton.was_pressed():

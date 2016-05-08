@@ -1,5 +1,6 @@
 import pygame
 from button import Button
+from nameselector import NameSelector
 from input import xo_input
 
 class UIContainer(object):
@@ -38,6 +39,20 @@ class UIContainer(object):
         self.components.append(button)
         self.__check_for_first_component()
         return button
+
+    def add_name_selector(self, x = 0, y = 0):
+        """
+        Adds a name selector to this container.
+
+        :param x: The initial X position of the name selector.
+        :param y: The initial Y position of the name selector.
+        :return: The name selector.
+        """
+        selector = NameSelector(self)
+        selector.rect = pygame.Rect(x, y, 0, 0)
+        self.components.append(selector)
+        self.__check_for_first_component()
+        return selector
 
     def get_window(self):
         """
