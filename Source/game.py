@@ -60,8 +60,6 @@ window = create_window(window_size, window_flags, 32, "PyGame Test")
 clear_color = (0, 0, 0)
 
 
-
-
 # Load in the current high scores
 highScoreManager = HighScoreManager()
 
@@ -75,23 +73,21 @@ stateManager.addGameState("GameScreen", GameScreen(stateManager, highScoreManage
 stateManager.addGameState("AboutScreen", AboutScreen(stateManager, window))
 stateManager.addGameState("InstructionsScreen", InstructionsScreen(stateManager, window))
 stateManager.addGameState("HighScoreScreen", HighScoreScreen(stateManager, highScoreManager, window))
-stateManager.addGameState("WinScreen", WinScreen(stateManager, window))
+stateManager.addGameState("WinScreen", WinScreen(stateManager, window, highScoreManager))
 
 # Prevent extra states being added after game starts
 stateManager.gameRunning = True
 
 
-
 # Run the game loop
-is_running = True
-while (is_running):
+while stateManager.gameRunning:
     # Run the message pump
     for event in pygame.event.get():
         if event.type == QUIT:
-            is_running = False
+            stateManager.gameRunning = False
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
-                is_running = False
+                stateManager.gameRunning = False
                 
     
     # Check if we changed states

@@ -1,4 +1,3 @@
-import pygame, sys
 import json
 
 class HighScoreManager:
@@ -30,6 +29,7 @@ class HighScoreManager:
         for d in self.high_scores:
             if self.high_scores[d]["score"] < new_score:
                 foundNewScore = True
+                break
                 
         return foundNewScore
         

@@ -45,7 +45,7 @@ class Enemy:
 
 
     def update(self, index):
-        self.playerI = index;
+        self.playerI = index
         
         self.currtime = time.time()
         if self.index == self.playerI and self.visible:

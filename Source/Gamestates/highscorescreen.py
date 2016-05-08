@@ -96,6 +96,7 @@ class HighScoreScreen:
                 self.initiateReset = False
             if self.reset_acceptButton.was_pressed():
                 self.highScoreManager.resetHighScores()
+                self.updateHighScores()
                 self.initiateReset = False
 
     def draw(self):

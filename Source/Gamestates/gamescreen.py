@@ -90,30 +90,21 @@ class GameScreen:
         for button in self.uiContainer.components:
             if(button.text != "" and button.was_pressed()):
                 for frac in self.right_fracs:
-                    print("frac: " + str(frac) + " button: " + button.text)
                     if(str(frac) == button.text):
                         self.score += self.addScore
                         button.text = ""
                         endLoop = True
                         self.right_fracs.remove(frac)
                         break
-                print("Score: " + str(self.score))
                 if(not endLoop):
                     self.score -= self.scoreLoss
                     self.wrongAnswers += 1
-
-                    
-
                     button.text = ""
-
-                print("length of right " + str(len(self.right_fracs)))
                 if(len(self.right_fracs) == 0):
-                    print("You got them all!")
                     self.resetLevel()
                     self.stateManager.switchGameState("GameScreen")
         if(self.wrongAnswers == 3):
             setScore(self.score)
-            self.highScoreManager.addHighScore(self.score, "Cool Dude")
             self.resetLevel()
             self.score = 0
 
@@ -123,8 +114,10 @@ class GameScreen:
         self.uiContainer.update()
     
     def draw(self):
-        self.drawText("Score: " + str(self.score), self.scoreFont, (-self.screenInfo.current_w/2)+90,
-                      (-self.screenInfo.current_h / 2) + 110)
+        x = (-self.screenInfo.current_w / 2) + 90
+        y = (-self.screenInfo.current_h / 2) + 110
+        self.drawText("Score: " + str(self.score), self.scoreFont, x, y)
+        self.drawText("Lives: " + str(3 - self.wrongAnswers), self.scoreFont, x + 500, y)
         self.drawText("Find these multiples: " + str(self.answer), self.titleFont, 0, (-self.screenInfo.current_h/2) + 70)
         # UI needs to be drawn LAST
         self.uiContainer.draw()
