@@ -1,6 +1,7 @@
 import pygame, sys
 from input import xo_input
 from UI.uicontainer import UIContainer
+from UI.button import Button
 from messagewindow import MessageWindow
 
 class HighScoreScreen:
@@ -15,8 +16,8 @@ class HighScoreScreen:
 
         self.screenInfo = pygame.display.Info()
         
-        self.titleFont = pygame.font.SysFont("monospace", 45, bold=True)
-        self.scoreFont = pygame.font.SysFont("monospace", 20)
+        self.titleFont = pygame.font.SysFont("monospace", 75, bold=True)
+        self.scoreFont = pygame.font.SysFont("monospace", 45)
         self.textColour = (128, 128, 128)
         
         self.initiateReset = False
@@ -25,7 +26,7 @@ class HighScoreScreen:
         centerX = self.screenInfo.current_w / 2
         centerY = self.screenInfo.current_h / 2
         message = "WARNING: That action cannot be undone. Are you positive you want to reset the scores to their default state?"
-        self.resetMessage = MessageWindow(self.window, message, 500, 200, centerX, centerY)
+        self.resetMessage = MessageWindow(self.window, message, 650, 300, centerX, centerY)
 
         # Get most recent scores
         self.highScores = self.highScoreManager.getCurrentHighScores()
@@ -38,22 +39,35 @@ class HighScoreScreen:
 
         # Back button
         self.backButton = self.uiContainer.add_button("Back")
-        self.backButton.rect = pygame.Rect((100 - (width / 2), self.screenInfo.current_h - 50 - (height / 2), width, height))
+        self.backButton.rect = pygame.Rect((110 - (width / 2), self.screenInfo.current_h - 50 - (height / 2), width, height))
 
         # Reset button
         self.resetButton = self.uiContainer.add_button("Reset Highscores")
-        self.resetButton.rect = pygame.Rect(self.screenInfo.current_w - 100 - (width / 2), self.screenInfo.current_h - 50 - (height / 2), width, height)
+        self.resetButton.rect = pygame.Rect(self.screenInfo.current_w - 280 - (width / 2), self.screenInfo.current_h - 50 - (height / 2), width*2, height)
 
-        self.reset_acceptButton = self.resetMessage.addButton("Yes, I'm sure", (-230, 65), (130, 20))
-        self.reset_cancelButton = self.resetMessage.addButton("No", (100, 65), (130, 20))
+        self.reset_acceptButton = self.resetMessage.addButton("Yes, I'm sure", (-270, 65), (130, 20))
+        self.reset_cancelButton = self.resetMessage.addButton("No", (165, 65), (130, 20))
         
         self.backButton.baseColour = self.resetButton.baseColour = (0, 0, 0)
         self.reset_cancelButton.baseColour = self.reset_acceptButton.baseColour = (16, 16, 16)
-        self.backButton.hoverColour = self.resetButton.hoverColour = self.reset_cancelButton.hoverColour = self.reset_acceptButton.hoverColour = (255, 255, 255)
-        self.backButton.clickColour = self.resetButton.clickColour = self.reset_cancelButton.clickColour = self.reset_acceptButton.clickColour = (128, 128, 128)
         
-        self.backButton.hoverFill = self.resetButton.hoverFill = self.reset_cancelButton.hoverFill = self.reset_acceptButton.hoverFill = 1
-
+        hoverFill = 1
+        hoverColour = (255, 255, 255)
+        clickColour = (128, 128, 128)
+        for button in self.uiContainer.components:
+            if isinstance(button, Button):
+                button.hoverColour = hoverColour
+                button.clickColour = clickColour
+                button.hoverFill = hoverFill
+                button.font = pygame.font.SysFont("monospace", 30)
+                
+        for button in self.resetMessage.uiContainer.components:
+            if isinstance(button, Button):
+                button.hoverColour = hoverColour
+                button.clickColour = clickColour
+                button.hoverFill = hoverFill
+                button.font = pygame.font.SysFont("monospace", 30)
+                
     def start(self):
         if self.initialHighScoreLoad:
             self.initialHighScoreLoad = False
@@ -101,11 +115,11 @@ class HighScoreScreen:
 
     def draw(self):
         # Draw the high scores
-        self.drawText("HIGH SCORES", self.titleFont, 0, -130)
-        y = -95
+        self.drawText("HIGH SCORES", self.titleFont, 0, -225)
+        y = -165
         for tuple in self.highScoreTuples:
             self.drawTextWithTuple(tuple, self.scoreFont, 0, y)
-            y += 25
+            y += 45
 
         # Draw the UI
         self.uiContainer.draw()

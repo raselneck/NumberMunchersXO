@@ -18,17 +18,17 @@ class MainScreen:
         self.screenInfo = pygame.display.Info()
         
         # Button sizes and positions
-        width = 170
-        height = 40
+        width = 250
+        height = 60
         cx = self.screenInfo.current_w / 2
         cy = self.screenInfo.current_h / 2
         bx = cx - (width / 2)
-        padding = 20
-        dy = padding / 2 + height
+        padding = 40
+        dy = padding / 2 + height + 30
 
         # Start game button
         self.gameButton = self.uiContainer.add_button("Start Game", bx, 0, width, height)
-        self.gameButton.rect.y = cy - height * 2 - padding / 2
+        self.gameButton.rect.y = cy - height * 2 - padding / 2  + 30
 
         # Instructions button
         self.instructionsButton = self.uiContainer.add_button("Instructions", bx, 0, width, height)
@@ -40,7 +40,7 @@ class MainScreen:
 
         # About button
         self.aboutButton = self.uiContainer.add_button("About", bx, 0, width, height)
-        self.aboutButton.rect.y = self.highScoresButton.rect.y + dy
+        self.aboutButton.rect.y = self.highScoresButton.rect.y + dy 
 
         # Set button colors
         baseColor = (0, 0, 0)
@@ -49,6 +49,7 @@ class MainScreen:
         hoverFill = 1
         for button in self.uiContainer.components:
             if isinstance(button, Button):
+                button.font = pygame.font.SysFont("monospace", 30)
                 button.baseColour = baseColor
                 button.hoverColour = hoverColor
                 button.clickColour = clickColor
