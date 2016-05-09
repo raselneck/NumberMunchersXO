@@ -165,7 +165,7 @@ def frac_parse(string):
     Parses a string into a fraction.
     :param string: The fraction string.
     """
-    if string.find('/') != -1
+    if string.find('/') != -1:
         numer, denom = string.split('/')
         return Fraction(int(numer), int(denom))
     return Fraction(int(string), 1)

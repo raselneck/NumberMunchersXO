@@ -69,7 +69,8 @@ class WinScreen:
         self.uiContainer.draw()
 
     def final(self):
-        self.__selector.setName("")
+        if self.__selector is not None:
+            self.__selector.setName("")
 
     def drawText(self, text, font, offsetX, offsetY):
         label = font.render(text, 1, self.textColour)

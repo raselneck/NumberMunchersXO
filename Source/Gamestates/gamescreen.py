@@ -85,7 +85,9 @@ class GameScreen:
         if xo_input.escape:
             self.resetLevel()
             self.score = 0
+            self.wrongAnswers = 0
             self.stateManager.switchGameState("MainScreen")
+            return
 
         endLoop = False
         for button in self.uiContainer.components:
@@ -105,10 +107,10 @@ class GameScreen:
             self.stateManager.switchGameState("GameScreen")
         if(self.wrongAnswers == 3):
             setScore(self.score)
+            self.wrongAnswers = 0
             self.resetLevel()
             self.score = 0
             self.stateManager.switchGameState("WinScreen")
-            self.initializedUI = False
 
         self.uiContainer.update()
     
@@ -131,7 +133,9 @@ class GameScreen:
     def drawText(self, text, font, offsetX, offsetY):
         label = font.render(text, 1, self.textColour)
         text_width, text_height = font.size(text)
-        self.window.blit(label, ((self.screenInfo.current_w/2) - (text_width/2) + offsetX, (self.screenInfo.current_h/2) - (text_height/2) + offsetY))
+        x = (self.screenInfo.current_w/2) - (text_width/2) + offsetX
+        y = (self.screenInfo.current_h/2) - (text_height/2) + offsetY
+        self.window.blit(label, (x, y))
 
     def array_random(self, start, end):
         if(start == end):
@@ -142,4 +146,3 @@ class GameScreen:
         self.uiContainer.components = []
         self.rightAnswers = 0
         self.totalRightAnswers = 0
-        self.wrongAnswers = 0
