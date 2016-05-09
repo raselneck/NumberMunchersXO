@@ -7,4 +7,5 @@
 # Ignored file types
 *.iml
 *.pyc
+*.pyo
 .highscores
