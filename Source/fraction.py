@@ -160,6 +160,16 @@ def frac_random():
             denom = frac_random_denominator()
     return Fraction(num, denom)
 
+def frac_parse(string):
+    """
+    Parses a string into a fraction.
+    :param string: The fraction string.
+    """
+    if string.find('/') != -1
+        numer, denom = string.split('/')
+        return Fraction(int(numer), int(denom))
+    return Fraction(int(string), 1)
+
 def create_goal(start_fraction = frac_random()):
     """
     creates a list of correct fractions and incorrect fractions from the given fraction

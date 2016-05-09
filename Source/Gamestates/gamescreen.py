@@ -14,7 +14,6 @@ class GameScreen:
 
         self.uiContainer = UIContainer(self.window)
         self.uiContainer.horizontalStride = 5
-        self.initializedUI = False
 
         self.titleFont = pygame.font.SysFont("monospace", 45, bold=True)
         self.scoreFont = pygame.font.SysFont("monospace", 30)
@@ -25,6 +24,8 @@ class GameScreen:
         self.addScore = 20
         self.scoreLoss = 5
         self.wrongAnswers = 0
+        self.rightAnswers = 0
+        self.totalRightAnswers = 0
         self.score = 0
         pass
 
@@ -45,6 +46,9 @@ class GameScreen:
             self.fractionAnswers.append(frac_random())
             self.equalFractions.append(self.fractionAnswers[x - 1].get_equal_fraction())
             self.right_fracs, self.wrong_fracs = create_goal(self.answer)
+
+        self.totalRightAnswers = len(self.right_fracs)
+        print "Looking for {0} fractions...".format(self.totalRightAnswers)
 
         temp_frac = frac_random()
         temp_right_fracs = deepcopy(self.right_fracs)
@@ -76,9 +80,6 @@ class GameScreen:
                 button.hoverColour = (255, 255, 255)
                 button.clickColour = (128, 128, 128)
                 button.hoverFill = 1
-
-        self.initializedUI = True
-
         
     def update(self):
         if xo_input.escape:
@@ -88,21 +89,20 @@ class GameScreen:
 
         endLoop = False
         for button in self.uiContainer.components:
-            if(button.text != "" and button.was_pressed()):
-                for frac in self.right_fracs:
-                    if(str(frac) == button.text):
-                        self.score += self.addScore
-                        button.text = ""
-                        endLoop = True
-                        self.right_fracs.remove(frac)
-                        break
-                if(not endLoop):
+            if button.text != "" and button.was_pressed():
+                btnFrac = frac_parse(button.text)
+                if btnFrac == self.answer:
+                    self.score += self.addScore
+                    self.rightAnswers += 1
+                    button.text = ""
+                else:
                     self.score -= self.scoreLoss
                     self.wrongAnswers += 1
                     button.text = ""
-                if(len(self.right_fracs) == 0):
-                    self.resetLevel()
-                    self.stateManager.switchGameState("GameScreen")
+                print "Got {0} / {1} fractions!".format(self.rightAnswers, self.totalRightAnswers)
+        if self.rightAnswers == self.totalRightAnswers:
+            self.resetLevel()
+            self.stateManager.switchGameState("GameScreen")
         if(self.wrongAnswers == 3):
             setScore(self.score)
             self.resetLevel()
@@ -140,5 +140,6 @@ class GameScreen:
 
     def resetLevel(self):
         self.uiContainer.components = []
+        self.rightAnswers = 0
+        self.totalRightAnswers = 0
         self.wrongAnswers = 0
-        pass
