@@ -23,8 +23,8 @@ class MainScreen:
         cx = self.screenInfo.current_w / 2
         cy = self.screenInfo.current_h / 2
         bx = cx - (width / 2)
-        padding = 40
-        dy = padding / 2 + height + 30
+        padding = 30
+        dy = padding / 2 + height
 
         # Start game button
         self.gameButton = self.uiContainer.add_button("Start Game", bx, 0, width, height)
@@ -41,6 +41,9 @@ class MainScreen:
         # About button
         self.aboutButton = self.uiContainer.add_button("About", bx, 0, width, height)
         self.aboutButton.rect.y = self.highScoresButton.rect.y + dy 
+        
+        self.quitButton = self.uiContainer.add_button("Quit", bx, 0, width, height)
+        self.quitButton.rect.y = self.aboutButton.rect.y + dy
 
         # Set button colors
         baseColor = (0, 0, 0)
@@ -74,6 +77,8 @@ class MainScreen:
             self.stateManager.switchGameState("HighScoreScreen")
         if self.aboutButton.was_pressed():
             self.stateManager.switchGameState("AboutScreen")
+        if self.quitButton.was_pressed():
+            exit_game(1)
 
         self.uiContainer.update()
     
