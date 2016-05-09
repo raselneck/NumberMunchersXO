@@ -81,9 +81,6 @@ class GameScreen:
 
         
     def update(self):
-        setScore(1000)
-        self.stateManager.switchGameState("WinScreen")
-
         if xo_input.escape:
             self.resetLevel()
             self.score = 0

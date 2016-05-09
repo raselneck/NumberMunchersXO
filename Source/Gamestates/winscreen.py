@@ -1,4 +1,5 @@
 import pygame, sys
+import random
 from input import xo_input
 from UI.uicontainer import UIContainer
 
@@ -11,6 +12,18 @@ def getScore():
 def setScore(score):
     global gScore
     gScore = score
+
+def getRandomName():
+    # Potential to get an easter egg random name
+    if random.random() < 0.1:
+        names = ["I_AM_COOL",
+                 "I_AM_AWESOME",
+                 "1337-HAXOR",
+                 "ASH_KETCHUM",
+                 "GARY_OAK",
+                 "CARL SAGAN"]
+        return names[random.randint(0, len(names) - 1)]
+    return ""
 
 class WinScreen:
     def __init__(self, manager, screen, highscores):
@@ -25,6 +38,7 @@ class WinScreen:
         self.__selector = None
 
         self.titleFont = pygame.font.SysFont("monospace", 75, bold=True)
+        self.textFont = pygame.font.SysFont("monospace", 25)
         self.textColour = (128, 128, 128)
 
         self.screenInfo = pygame.display.Info()
@@ -32,12 +46,11 @@ class WinScreen:
 
     def start(self):
         global gScore
-        if self.highscores.compareHighScores(gScore):
+        if self.highscores.compareHighScores(gScore) and self.__selector is None:
             self.__selector = self.uiContainer.add_name_selector(10, 10)
-            self.__selector.setName("I_AM_COOL")
-            print "New high score!"
-        else:
-            print "No new high score :/"
+            self.__selector.setName(getRandomName())
+            self.__selector.rect = pygame.Rect(610, 537, 0, 0)
+            self.newHighScore = True
 
     def update(self):
         if xo_input.btn_check:
@@ -51,10 +64,12 @@ class WinScreen:
         global gScore
         self.drawText("Game Over!", self.titleFont, 0, -50)
         self.drawText("Final Score: " + str(gScore), self.titleFont, 0, 50)
+        if self.newHighScore:
+            self.drawText("Please enter your name: ", self.textFont, -120, 150)
         self.uiContainer.draw()
 
     def final(self):
-        pass
+        self.__selector.setName("")
 
     def drawText(self, text, font, offsetX, offsetY):
         label = font.render(text, 1, self.textColour)

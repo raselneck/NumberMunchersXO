@@ -10,7 +10,8 @@ class NameSelector(UIComponent):
     __MAX_NAME_LENGTH = 12
     __CHARACTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
                     'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '_', '!', '?', ' ']
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                    '-', '_', '!', '?', ' ']
 
     def __init__(self, container):
         """
@@ -22,14 +23,17 @@ class NameSelector(UIComponent):
         self.__name = "".ljust(NameSelector.__MAX_NAME_LENGTH, ' ')
         self.__namePosition = 0
         self.__charPosition = 0
-        self.__font = pygame.font.SysFont("monospace", 20)
+        self.__font = pygame.font.SysFont("monospace", 25)
         self.__char_w, self.__char_h = self.__font.size("M")
 
     def getName(self):
         """
         Gets the entered name.
         """
-        return self.__name
+        name = self.__name.rstrip(' ')
+        if len(name) == 0:
+            return "[UNKNOWN]"
+        return name
 
     def setName(self, name):
         """
@@ -40,6 +44,7 @@ class NameSelector(UIComponent):
         self.__name = ""
         length = min(len(name), NameSelector.__MAX_NAME_LENGTH)
         if length == 0:
+            self.__name = "".ljust(NameSelector.__MAX_NAME_LENGTH, ' ')
             return
         elif length == 1:
             self.__name[0] = name[0]
