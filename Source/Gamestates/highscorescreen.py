@@ -45,11 +45,13 @@ class HighScoreScreen:
         self.resetButton = self.uiContainer.add_button("Reset Highscores")
         self.resetButton.rect = pygame.Rect(self.screenInfo.current_w - 280 - (width / 2), self.screenInfo.current_h - 50 - (height / 2), width*2, height)
 
-        self.reset_acceptButton = self.resetMessage.addButton("Yes, I'm sure", (-270, 65), (130, 20))
-        self.reset_cancelButton = self.resetMessage.addButton("No", (165, 65), (130, 20))
+        self.reset_acceptButton = self.resetMessage.addButton("Yes, I'm sure", (-285, 95), (260, 30))
+        self.reset_cancelButton = self.resetMessage.addButton("No", (165, 95), (130, 30))
         
         self.backButton.baseColour = self.resetButton.baseColour = (0, 0, 0)
         self.reset_cancelButton.baseColour = self.reset_acceptButton.baseColour = (16, 16, 16)
+        
+        self.resetMessage.textFont = pygame.font.SysFont("monospace", 30)
         
         hoverFill = 1
         hoverColour = (255, 255, 255)
