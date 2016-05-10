@@ -59,7 +59,7 @@ class MainScreen:
                 button.hoverFill = hoverFill
                 
         # Load title image
-        self.titleImage = pygame.image.load("../Media/Images/titleXO.png").convert()
+        self.titleImage = pygame.image.load("Media/Images/titleXO.png").convert()
 
     def start(self):
         pass

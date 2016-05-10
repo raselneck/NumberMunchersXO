@@ -48,7 +48,6 @@ class GameScreen:
             self.right_fracs, self.wrong_fracs = create_goal(self.answer)
 
         self.totalRightAnswers = len(self.right_fracs)
-        print "Looking for {0} fractions...".format(self.totalRightAnswers)
 
         temp_frac = frac_random()
         temp_right_fracs = deepcopy(self.right_fracs)
@@ -101,7 +100,6 @@ class GameScreen:
                     self.score -= self.scoreLoss
                     self.wrongAnswers += 1
                     button.text = ""
-                print "Got {0} / {1} fractions!".format(self.rightAnswers, self.totalRightAnswers)
         if self.rightAnswers == self.totalRightAnswers:
             self.resetLevel()
             self.stateManager.switchGameState("GameScreen")

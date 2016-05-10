@@ -1,0 +1,8 @@
+[Activity]
+name = NumberMunchersXO
+bundle_id = org.sugarlabs.NumberMunchersXO
+icon = icon
+exec = sugar-activity Game.Game
+show_launcher = yes
+activity_version = 1
+license = MIT

@@ -4,7 +4,7 @@ class HighScoreManager:
     
     def __init__(self):
         # Read in the file
-        with open("../.highscores", "r") as f:
+        with open(".highscores", "r") as f:
             self.data = json.load(f)
         
         # The default section is just used to reset scores if the user chooses
@@ -93,9 +93,8 @@ class HighScoreManager:
         '''
         Saves current high scores to a json file name '.highscores'
         '''
-        with open("../.highscores", "w") as f:
+        with open(".highscores", "w") as f:
             json.dump({ "highscores" : self.high_scores, "default_highscores" : self.default_high_scores }, f)
-        pass
         
     def resetHighScores(self):
         '''
@@ -103,7 +102,6 @@ class HighScoreManager:
         '''
         for key in self.high_scores:
             self.high_scores[key] = self.default_high_scores[key]
-        pass
     
     def __str__(self):
         return json.dumps(self.data, sort_keys=True, indent=4, separators=(",", ": "))
