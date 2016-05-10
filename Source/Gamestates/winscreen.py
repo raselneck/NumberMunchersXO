@@ -46,11 +46,18 @@ class WinScreen:
 
     def start(self):
         global gScore
-        if self.highscores.compareHighScores(gScore) and self.__selector is None:
-            self.__selector = self.uiContainer.add_name_selector(10, 10)
-            self.__selector.setName(getRandomName())
-            self.__selector.rect = pygame.Rect(610, 537, 0, 0)
+        if self.highscores.compareHighScores(gScore):
+            if self.__selector is None:
+                self.__selector = self.uiContainer.add_name_selector(10, 10)
+                self.__selector.setName(getRandomName())
+                self.__selector.rect = pygame.Rect(610, 537, 0, 0)
+            else:
+                self.__selector.enable()
             self.newHighScore = True
+        else:
+            self.newHighScore = False
+            if self.__selector is not None:
+                self.__selector.disable()
 
     def update(self):
         if xo_input.btn_check:
