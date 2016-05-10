@@ -1,1 +1,26 @@
-{"default_highscores": {"third": {"score": 800, "name": "Sarah"}, "sixth": {"score": 500, "name": "bit_o_spider"}, "seventh": {"score": 400, "name": "MOTHER"}, "ninth": {"score": 200, "name": "Cat_n_da_hat"}, "second": {"score": 900, "name": "Mary"}, "fourth": {"score": 700, "name": "Saerha"}, "tenth": {"score": 100, "name": "Stehfon"}, "eighth": {"score": 300, "name": "Greg_Chant"}, "fifth": {"score": 600, "name": "Glenjahmin"}, "first": {"score": 1000, "name": "Robert"}}, "highscores": {"third": {"score": 800, "name": "Sarah"}, "sixth": {"score": 500, "name": "bit_o_spider"}, "seventh": {"score": 400, "name": "MOTHER"}, "ninth": {"score": 200, "name": "Cat_n_da_hat"}, "second": {"score": 900, "name": "Mary"}, "fourth": {"score": 700, "name": "Saerha"}, "tenth": {"score": 100, "name": "Stehfon"}, "eighth": {"score": 300, "name": "Greg_Chant"}, "fifth": {"score": 600, "name": "Glenjahmin"}, "first": {"score": 1000, "name": "Robert"}}}
+{
+    "default_highscores": {
+        "first":  { "score": 1000, "name": "ROBERT" },
+        "second": { "score": 900,  "name": "MARY" },
+        "third":  { "score": 800,  "name": "SARAH" },
+        "fourth": { "score": 700,  "name": "SAERHA" },
+        "fifth":  { "score": 600,  "name": "GLENJAHMIN" },
+        "sixth":  { "score": 500,  "name": "BIT_O_SPIDER" },
+        "seventh":{ "score": 400,  "name": "MOTHER" },
+        "eighth": { "score": 300,  "name": "GREG_CHANT" },
+        "ninth":  { "score": 200,  "name": "CAT_N_DA_HAT" },
+        "tenth":  { "score": 100,  "name": "STEHFON" }
+    },
+    "highscores": {
+        "first":  { "score": 1000, "name": "ROBERT" },
+        "second": { "score": 900,  "name": "MARY" },
+        "third":  { "score": 800,  "name": "SARAH" },
+        "fourth": { "score": 700,  "name": "SAERHA" },
+        "fifth":  { "score": 600,  "name": "GLENJAHMIN" },
+        "sixth":  { "score": 500,  "name": "BIT_O_SPIDER" },
+        "seventh":{ "score": 400,  "name": "MOTHER" },
+        "eighth": { "score": 300,  "name": "GREG_CHANT" },
+        "ninth":  { "score": 200,  "name": "CAT_N_DA_HAT" },
+        "tenth":  { "score": 100,  "name": "STEHFON" }
+    }
+}
