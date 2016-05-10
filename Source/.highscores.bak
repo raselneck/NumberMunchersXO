@@ -1,0 +1,26 @@
+{
+    "default_highscores": {
+        "first":  { "score": 1000, "name": "ROBERT" },
+        "second": { "score": 900,  "name": "MARY" },
+        "third":  { "score": 800,  "name": "SARAH" },
+        "fourth": { "score": 700,  "name": "SAERHA" },
+        "fifth":  { "score": 600,  "name": "GLENJAHMIN" },
+        "sixth":  { "score": 500,  "name": "BIT_O_SPIDER" },
+        "seventh":{ "score": 400,  "name": "MOTHER" },
+        "eighth": { "score": 300,  "name": "GREG_CHANT" },
+        "ninth":  { "score": 200,  "name": "CAT_N_DA_HAT" },
+        "tenth":  { "score": 100,  "name": "STEHFON" }
+    },
+    "highscores": {
+        "first":  { "score": 1000, "name": "ROBERT" },
+        "second": { "score": 900,  "name": "MARY" },
+        "third":  { "score": 800,  "name": "SARAH" },
+        "fourth": { "score": 700,  "name": "SAERHA" },
+        "fifth":  { "score": 600,  "name": "GLENJAHMIN" },
+        "sixth":  { "score": 500,  "name": "BIT_O_SPIDER" },
+        "seventh":{ "score": 400,  "name": "MOTHER" },
+        "eighth": { "score": 300,  "name": "GREG_CHANT" },
+        "ninth":  { "score": 200,  "name": "CAT_N_DA_HAT" },
+        "tenth":  { "score": 100,  "name": "STEHFON" }
+    }
+}

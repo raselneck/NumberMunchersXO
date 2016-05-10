@@ -1,4 +1,4 @@
-# !!NOTE!!! Please update this if you use an editor other
+# !!!NOTE!!! Please update this if you use an editor other
 # than PyCharm so that your project things are ignored!!!
 
 # Ignored directories
@@ -8,4 +8,4 @@
 *.iml
 *.pyc
 *.pyo
-.highscores*
+
