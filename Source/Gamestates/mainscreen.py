@@ -1,4 +1,4 @@
-import pygame
+import pygame, sys
 from input import xo_input
 from exit import exit_game
 from UI.uicontainer import UIContainer
@@ -59,7 +59,10 @@ class MainScreen:
                 button.hoverFill = hoverFill
                 
         # Load title image
-        self.titleImage = pygame.image.load("media/Images/titleXO.png").convert()
+        if sys.platform == "win32":
+            self.titleImage = pygame.image.load("WinMedia/Images/titleXO.png").convert()
+        else:
+            self.titleImage = pygame.image.load("media/Images/titleXO.png").convert()
 
     def start(self):
         pass
