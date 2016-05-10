@@ -16,7 +16,7 @@ from Gamestates.winscreen import WinScreen
 from highscoremanager import *
 
 if sys.platform != "win32":
-    from gi.repository import Gtk
+    from gi.repository import Gtk as gtk
 
 class Game:
     """
