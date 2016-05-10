@@ -18,30 +18,59 @@ class Enemy:
         self.visible = False
         self.currtime = 0.0
         self.index = 0
+        self.playerI = 0
 
     def spawn(self):
         self.dirRand = random.randint(0, 3)
         self.slotRand = random.randint(0, 4)
+
         if self.dirRand == 0:
+            self.index = self.slotRand * 5
+            if self.index == self.playerI:
+                if self.slotRand == 4:
+                    self.slotRand = 0
+                else:
+                    self.slotRand = self.slotRand + 1
+            
             self.direction = "down"
             self.posy = 150
             self.posx = self.slotRand * self.w + 50 + 10 * self.slotRand
             self.index = self.slotRand * 5
+                            
         if self.dirRand == 1:
+            self.index = self.slotRand * 5 + 4
+            if self.index == self.playerI:
+                if self.slotRand == 4:
+                    self.slotRand = 0
+                else:
+                    self.slotRand = self.slotRand + 1
             self.direction = "up"
             self.posy = 150 + self.h * 4 + 40
             self.posx = self.slotRand * self.w + 50 + 10 * self.slotRand
-            self.index = self.slotRand * 5 + 4
+            
         if self.dirRand == 2:
+            self.index = self.slotRand
+            if self.index == self.playerI:
+                if self.slotRand == 4:
+                    self.slotRand = 0
+                else:
+                    self.slotRand = self.slotRand + 1
+            
             self.direction = "right"
             self.posy = self.slotRand * self.h + 150 + 10 * self.slotRand
             self.posx = 50
-            self.index = self.slotRand
+            
         if self.dirRand == 3:
+            self.index = self.slotRand + 20
+            if self.index == self.playerI:
+                if self.slotRand == 4:
+                    self.slotRand = 0
+                else:
+                    self.slotRand = self.slotRand + 1
             self.direction = "left"
             self.posy = self.slotRand * self.h + 150 + 10 * self.slotRand
             self.posx = 50 + self.w * 4 + 40
-            self.index = self.slotRand + 20
+            
 
 
     def update(self, index):
