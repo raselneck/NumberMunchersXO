@@ -9,4 +9,5 @@
 *.pyc
 *.pyo
 .highscores*
+*.xo
 
