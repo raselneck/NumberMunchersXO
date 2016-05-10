@@ -8,4 +8,5 @@
 *.iml
 *.pyc
 *.pyo
+.highscores*
 
