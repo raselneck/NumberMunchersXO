@@ -45,6 +45,13 @@ class InstructionsScreen:
                 button.clickColour = clickColour
                 button.hoverFill = hoverFill
                 button.font = pygame.font.SysFont("monospace", 30)
+                
+                # Load title image
+        if sys.platform == "win32":
+            self.image = pygame.image.load("WinMedia/Images/instructions.png").convert()
+        else:
+            self.image = pygame.image.load("media/Images/instructions.png").convert()
+            
         pass
 
     def start(self):
@@ -59,18 +66,20 @@ class InstructionsScreen:
     def draw(self):
         self.uiContainer.draw()
 
-        self.drawTextCentered("Instructions", self.titleFont, 0, -300)
-        self.drawTextCentered("To play Number Munchers you have ", self.scoreFont, 0, -250)
-        self.drawTextCentered("to \"munch\" on the multiples of", self.scoreFont, 0, -200)
-        self.drawTextCentered("the fraction shown at the top ", self.scoreFont, 0, -150)
-        self.drawTextCentered("of the screen until you get them", self.scoreFont, 0, -100)
-        self.drawTextCentered(" all. When all of the fraction", self.scoreFont, 0, -50)
-        self.drawTextCentered(" multiples on the screen are ", self.scoreFont, 0, 0)
-        self.drawTextCentered(" munched on a new fraction and ", self.scoreFont, 0, 50)
-        self.drawTextCentered("board will be made. You will keep ", self.scoreFont, 0, 100)
-        self.drawTextCentered("playing until you get three wrong ", self.scoreFont, 0, 150)
-        self.drawTextCentered("fractions in a level. The higher ", self.scoreFont, 0, 200)
-        self.drawTextCentered("your score the better. ", self.scoreFont, 0, 250)
+        #self.drawTextCentered("Instructions", self.titleFont, 0, -300)
+        #self.drawTextCentered("To play Number Munchers you have ", self.scoreFont, 0, -250)
+        #self.drawTextCentered("to \"munch\" on the multiples of", self.scoreFont, 0, -200)
+        #self.drawTextCentered("the fraction shown at the top ", self.scoreFont, 0, -150)
+        #self.drawTextCentered("of the screen until you get them", self.scoreFont, 0, -100)
+        #self.drawTextCentered(" all. When all of the fraction", self.scoreFont, 0, -50)
+        #self.drawTextCentered(" multiples on the screen are ", self.scoreFont, 0, 0)
+        #self.drawTextCentered(" munched on a new fraction and ", self.scoreFont, 0, 50)
+        #self.drawTextCentered("board will be made. You will keep ", self.scoreFont, 0, 100)
+        #self.drawTextCentered("playing until you get three wrong ", self.scoreFont, 0, 150)
+        #self.drawTextCentered("fractions in a level. The higher ", self.scoreFont, 0, 200)
+        #self.drawTextCentered("your score the better. ", self.scoreFont, 0, 250)
+
+        self.window.blit(self.image, ((self.screenInfo.current_w/2) - (self.image.get_rect().width/2), (self.screenInfo.current_h/2) - (self.image.get_rect().height/2)))
         pass
     
     def final(self):

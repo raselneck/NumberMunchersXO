@@ -19,8 +19,8 @@ class Enemy:
         self.currtime = 0.0
         self.index = 0
         self.playerI = 0
-		
-		# Load title image
+        
+        # Load title image
         if sys.platform == "win32":
             self.image = pygame.image.load("WinMedia/Images/enemy.png").convert()
         else:
@@ -100,8 +100,7 @@ class Enemy:
 
 
     def draw(self):
-        # pygame.draw.rect(self.window, (255, 0, 0), (self.posx, self.posy, self.w, self.h), 0)
-		self.window.blit(self.image, (self.posx + (self.w/4), self.posy))
+        self.window.blit(self.image, (self.posx + (self.w/4), self.posy))
 
     def move(self):
         if self.direction == "up":
